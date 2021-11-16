@@ -4,13 +4,15 @@ from firebase_admin import firestore
 import uuid
 from datetime import datetime
 from structs.bubbles import Bubbles
+from structs import server_globals
 
 # Use the application default credentials
+
 class FishFirestore:
 
     def __init__(self):
         print("initalizing firestore client...")
-        cred = credentials.Certificate('../resources/credentials.json')
+        cred = credentials.Certificate(server_globals.gcs_cred_path)
         firebase_admin.initialize_app(cred)
         self.db = firestore.client()
         print("finished created firestore client!")
