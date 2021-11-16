@@ -1,0 +1,12 @@
+steps:
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   args:
+   - gcloud
+   - functions
+   - deploy
+   - addToQueue  # this is the name of the google cloud function
+   - --region=us-central1
+   - --runtime=python38  # specify version of python to use
+   - --source=./backend  # this is the source directory for the code to be deployed
+   - --trigger-http
+   - --memory=2Gi
