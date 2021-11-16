@@ -1,4 +1,4 @@
-def hello_world(request):
+def addToQueue(request):  # this function must be named the name of the endpoint in GCF
     """Responds to any HTTP request.
     Args:
         request (flask.Request): HTTP request object.
