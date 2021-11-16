@@ -1,0 +1,1 @@
+esptool.py --chip esp32 --port /dev/tty.usbserial-022F211C erase_flash

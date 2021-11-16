@@ -1,0 +1,1 @@
+esptool.py --chip esp32 --port /dev/tty.usbserial-022F211C --baud 460800 write_flash -z 0x1000 ../../_firmware/micropython_esp32.bin
