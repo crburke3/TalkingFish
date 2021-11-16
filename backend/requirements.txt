@@ -1,3 +1,6 @@
 firebase-admin
 pydantic
-
+nltk
+gtts
+pygame
+mutagen
