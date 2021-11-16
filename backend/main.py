@@ -20,4 +20,3 @@ def hello_world(request):
         return post_to_queue(request)
     else:
         return json.dumps({"ERROR": "unknown route"}), 401
-
