@@ -4,7 +4,9 @@ from _local_resources_.TestClass import TestClass
 
 def test_bubbles_object_creation_success_201():
     fake_post = TestClass({
-        "message": "test"
+        "message": {
+            "text": "Hello world"
+        }
     })
     fake_post.path = "post_to_queue"
     fake_post.method = "POST"

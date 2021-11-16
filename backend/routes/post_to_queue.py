@@ -4,5 +4,6 @@ from structs import server_globals
 
 def post_to_queue(request):
     print("parameters passed: ", request)
-    server_globals.fish_firestore.add_request_to_queue("TEST TEXT")
-    return json.dumps({"test": "test"}), 201
+    text = request.body.message.text
+    server_globals.fish_firestore.add_request_to_queue(text)
+    return json.dumps({"text_added_to_queue": text}), 201
