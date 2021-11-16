@@ -5,6 +5,8 @@ from structs.text_to_commands import TextToCommands
 
 def post_to_queue(request):
     print("parameters passed: ", request)
+    request_json = request.get_json()
+    print("Json body: ", request_json)
     text = request.get_json()['message']['text']
     commands = TextToCommands.convertTextToCommands(text)
     server_globals.fish_firestore.add_request_to_queue(text, commands)
