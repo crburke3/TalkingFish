@@ -23,7 +23,7 @@ if __name__ == '__main__':
     device.fish_api.download_song_for_object(fake_command)
 
     device.fc.current_task = fake_command
-    device.fc.current_task._expected_prescaler = 0.03
+    device.fc.current_task._expected_prescaler = 0.04789855072463768
 
     print("BEGINNING PARALLELISM")
     from multiprocessing import Process
