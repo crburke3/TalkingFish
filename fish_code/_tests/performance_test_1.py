@@ -22,5 +22,5 @@ if __name__ == '__main__':
     fake_command.speech_text = "You know where I keep my money? The river bank"
     device.fish_api.download_song_for_object(fake_command)
 
-    device.fc.current_task = fake_command
-    device.fc.current_task._expected_prescaler = 0.04789855072463768
+    fake_command._expected_prescaler = 0.04789855072463768
+    device.fc.perform(fake_command)
