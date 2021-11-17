@@ -31,7 +31,7 @@ class FishController:
         for thread in threads:
             thread.start()
         # Wait for all of them to finish
-        time.sleep(3)
+        # time.sleep(3)
         for x in threads:
             x.join()
         print("threads finished!")
