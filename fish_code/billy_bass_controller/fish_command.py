@@ -1,6 +1,6 @@
 import audioread
 
-AUDIO_OFFSET = 0.65
+AUDIO_OFFSET = 0.7
 
 
 class FishCommand:

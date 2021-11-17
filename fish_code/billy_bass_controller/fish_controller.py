@@ -8,7 +8,8 @@ from .motor_controller import MotorController
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
 
-AUDIO_OFFSET = 0.65
+AUDIO_OFFSET = 0.6
+
 
 class FishController:
 
