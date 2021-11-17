@@ -36,7 +36,7 @@ if __name__ == '__main__':
     device.fish_api.download_song_for_object(fake_command)
 
     device.fc.current_task = fake_command
-    device.fc.current_task._expected_prescaler = 0.01
+    device.fc.current_task._expected_prescaler = 0.03
 
     print("BEGINNING PARALLELISM")
-    run_parallel(device.fc._move_to_commands())
+    run_parallel(device.fc._move_to_commands(), device.fc._play_song())
