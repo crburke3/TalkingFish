@@ -13,7 +13,7 @@ class FishCommand:
     def validate(self):
         assert self.local_song_url is not None
         assert len(self.commands) > 0
-        self.get_expected_prescaler()
+        # self.get_expected_prescaler()
 
     def get_expected_prescaler(self) -> float:
         if not self._expected_prescaler:

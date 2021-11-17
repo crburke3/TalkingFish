@@ -28,6 +28,12 @@ class FishController:
         database_object.validate()
         self.current_task = database_object
 
+        print("BEGINNING PARALLELISM")
+        from multiprocessing import Process
+        p1 = Process(target=self._play_song)
+        p1.start()
+        p2 = Process(target=self._move_to_commands)
+        p2.start()
         # run in sync
 
 

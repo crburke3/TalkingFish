@@ -24,10 +24,3 @@ if __name__ == '__main__':
 
     device.fc.current_task = fake_command
     device.fc.current_task._expected_prescaler = 0.04789855072463768
-
-    print("BEGINNING PARALLELISM")
-    from multiprocessing import Process
-    p1 = Process(target=device.fc._play_song)
-    p1.start()
-    p2 = Process(target=device.fc._move_to_commands)
-    p2.start()
