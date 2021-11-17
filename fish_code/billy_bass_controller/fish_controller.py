@@ -1,5 +1,6 @@
 # system modules
 import time
+from datetime import datetime
 from multiprocessing import Pool
 
 
@@ -21,6 +22,7 @@ class FishController:
     def perform(self, database_object: FishCommand):
         print("Expected movement duration (units): ", database_object.command_unit_length())
         print("Unit Duration (s): ", database_object.get_expected_prescaler())
+        print("Expected movement duration (s): ", database_object.command_unit_length() * database_object.get_expected_prescaler())
         print("Expected song duration (s): ", database_object.song_length_seconds())
         print("")
         print("performing!")
@@ -40,6 +42,7 @@ class FishController:
         print("threads finished!")
 
     def _move_to_commands(self):
+        start_time = datetime.now().timestamp()
         time.sleep(AUDIO_START_OFFSET)
         print("moving to commands: ", self.current_task.commands)
         for cmd in self.current_task.commands:
@@ -47,6 +50,8 @@ class FishController:
                 self._handle_mouth_movement(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
+        diff = datetime.now().timestamp() - start_time
+        print(f"it took {diff}s  to move")
 
     def _play_song(self):
         print("playgin song...", flush=True)
