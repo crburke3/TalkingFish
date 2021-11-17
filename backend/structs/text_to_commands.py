@@ -45,13 +45,13 @@ class TextToCommands:
             #   2: secondary stress
             if sound[-1].isnumeric():
                 if sound[-1] == '0':
-                    mouthPosition = mouthPosition + '1'
+                    mouthPosition = mouthPosition + ':1'
                 elif sound[-1] == '1':
-                    mouthPosition = mouthPosition + '4'
+                    mouthPosition = mouthPosition + ':4'
                 else:
-                    mouthPosition = mouthPosition + '3'
+                    mouthPosition = mouthPosition + ':3'
             else:
-                mouthPosition = mouthPosition + '2'
+                mouthPosition = mouthPosition + ':2'
             oAndC.append(mouthPosition)
 
         return oAndC
