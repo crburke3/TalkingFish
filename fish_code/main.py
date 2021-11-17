@@ -22,4 +22,6 @@ if __name__ == '__main__':
         fake_command.audio_start_offset = 0.5
         device.fc.perform(fake_command)
         time.sleep(5)
+        device.fc.happy_dance()
+        time.sleep()
 
