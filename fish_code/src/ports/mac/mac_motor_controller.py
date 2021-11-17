@@ -22,26 +22,32 @@ class FakeMotorController(MotorController):
     def turn_on_upper_body(self):
         assert not self._lower_body_on
         self.INA_1.on()
+        print("Upper Body: ON!")
         self._upper_body_on = True
 
     def turn_off_upper_body(self):
         self.INA_1.off()
+        print("Upper Body: OFF!")
         self._upper_body_on = False
 
     def turn_on_lower_body(self):
         assert not self._upper_body_on
         self.INA_2.on()
+        print("Lower Body: ON!")
         self._lower_body_on = True
 
     def turn_off_lower_body(self):
         self.INA_2.off()
+        print("Lower Body: OFF!")
         self._lower_body_on = False
 
     def turn_on_mouth(self):
+        print("Mouth: OPEN!", end="")
         self.INA_3.on()
 
     def turn_off_mouth(self):
         self.INA_3.off()
+        print("   CLOSED!")
 
 
 

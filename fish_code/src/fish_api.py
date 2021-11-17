@@ -14,3 +14,11 @@ class FishAPI:
                     f.write(chunk)
         print("successfully downloaded to: ", local_path)
         return local_path
+
+    def get_next_item_in_queue(self):
+        # HTTP request
+        # download song
+        raise NotImplementedError()
+
+    def remove_item_from_queue(self, item_id:str):
+        raise NotImplementedError()
