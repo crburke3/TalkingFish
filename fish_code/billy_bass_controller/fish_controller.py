@@ -26,7 +26,7 @@ class FishController:
         self.current_task = database_object
         movement_thread = Thread(target=self._move_to_commands)
         song_thread = Thread(target=self._play_song)
-        threads = [movement_thread, song_thread]
+        threads = [movement_thread]
         # begin performance
         for thread in threads:
             thread.start()
