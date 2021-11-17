@@ -23,5 +23,6 @@ if __name__ == '__main__':
         device.fc.perform(fake_command)
         time.sleep(5)
         device.fc.happy_dance()
-        time.sleep()
+        time.sleep(5)
+
 
