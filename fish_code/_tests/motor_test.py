@@ -2,7 +2,7 @@
 import time
 
 # user defined modules
-from fish_code.billy_bass_controller import Device
+from ..billy_bass_controller import Device
 
 device = Device()
 
