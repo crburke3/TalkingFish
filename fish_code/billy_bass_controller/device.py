@@ -20,18 +20,21 @@ class Device:
             from .ports.esp_based_micropython.esp32_motor_controller import ESP32MotorController
             self.mc = ESP32MotorController()
             print("Motor Controller Device Identified: ESP32")
+            return
         except:
             pass
         try:
             from .ports.raspberry_pi.raspberry_pi_motor_controller import RPIMotorController
             self.mc = RPIMotorController()
             print("Motor Controller Device Identified: Raspberry PI")
+            return
         except:
             pass
         try:
             from .ports.mac.mac_motor_controller import FakeMotorController
             self.mc = FakeMotorController()
             print("Motor Controller Device Identified: Local Computer")
+            return
         except:
             raise Exception("Motor Controller Device Not Recognized!")
 
