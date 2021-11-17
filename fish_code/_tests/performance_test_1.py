@@ -2,6 +2,7 @@
 import time
 import os
 os.chdir("../")
+print("curr dir: ", os.getcwd())
 
 # user defined modules
 from billy_bass_controller.device import Device
