@@ -27,5 +27,6 @@ time.sleep(1)
 fake_command = FishCommand()
 fake_command.commands = ['C2', 'O4', 'C2', 'O4', 'C2', 'O4', 'C2', 'O4', 'C2', 'O4', 'C2', 'C2', 'O4', 'C2', 'O4', 'C2', 'O1',
                                  'C2', 'O1', 'C2', 'O4', 'C2', 'O1', 'C2', 'O4', 'C2', 'C2']
+fake_command._expected_prescaler = 0.05
 device.fc.current_task = fake_command
 device.fc._move_to_commands()
