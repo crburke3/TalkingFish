@@ -1,9 +1,11 @@
 # firmware defined modules
 import time
+import os
+os.chdir("../")
 
 # user defined modules
-from ..billy_bass_controller.device import Device
-from ..billy_bass_controller.fish_command import FishCommand
+from billy_bass_controller.device import Device
+from billy_bass_controller.fish_command import FishCommand
 
 
 device = Device()

@@ -1,5 +1,7 @@
 # firmware defined modules
 import time
+import os
+os.chdir("../")
 
 # user defined modules
 from ..billy_bass_controller import Device
