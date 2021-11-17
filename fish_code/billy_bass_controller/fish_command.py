@@ -1,5 +1,5 @@
 import audioread
-import globals
+from .globals import AUDIO_SHORTENING
 
 
 class FishCommand:
@@ -34,5 +34,5 @@ class FishCommand:
         with audioread.audio_open(self.local_song_url) as f:
             totalsec = f.duration
             min, sec = divmod(totalsec, 60)
-            return sec - globals.AUDIO_SHORTENING
+            return sec - AUDIO_SHORTENING
 
