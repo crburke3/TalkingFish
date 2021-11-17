@@ -62,12 +62,12 @@ class FishController:
         start_time = datetime.now().timestamp()
         print("moving to commands: ", self.current_task.commands)
         for cmd in self.current_task.commands:
-            cmd_action = cmd.split(":")[0]
-            if cmd_action in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
+            movement, duration = _parse_movement_and_duration(cmd)
+            if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
                 self._handle_mouth_movement(cmd)
-            elif cmd_action in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
+            elif movement in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
                 self._handle_upper_body_movement(cmd)
-            elif cmd_action in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
+            elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
                 self._handle_upper_body_movement(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
