@@ -3,8 +3,8 @@ import time, os, sys
 sys.path.insert(1, '../')
 
 # user defined modules
-from billy_bass_controller.device import Device
-from billy_bass_controller.fish_command import FishCommand
+from billy_bass_controller import Device
+from billy_bass_controller import FishCommand
 
 
 device = Device()

@@ -20,9 +20,9 @@ class FakeMotorController(MotorController):
             pin.off()
 
     def turn_on_upper_body(self):
+        super(FakeMotorController, self).turn_on_upper_body()
         assert not self._lower_body_on
         self.INA_1.on()
-        print("Upper Body: ON!")
         self._upper_body_on = True
 
     def turn_off_upper_body(self):
@@ -42,12 +42,12 @@ class FakeMotorController(MotorController):
         self._lower_body_on = False
 
     def turn_on_mouth(self):
-        print("Mouth: OPEN!", end="")
+        super(FakeMotorController, self).turn_on_mouth()
         self.INA_3.on()
 
     def turn_off_mouth(self):
+        super(FakeMotorController, self).turn_off_mouth()
         self.INA_3.off()
-        print("   CLOSED!")
 
 
 

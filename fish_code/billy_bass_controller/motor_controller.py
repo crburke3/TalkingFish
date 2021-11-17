@@ -11,7 +11,8 @@ class MotorController:
     _mouth_on: bool = False
 
     def turn_on_upper_body(self):
-        raise NotImplementedError()
+        print("Upper Body: ON!")
+        # raise NotImplementedError()
 
     def turn_off_upper_body(self):
         raise NotImplementedError()
@@ -23,7 +24,7 @@ class MotorController:
         raise NotImplementedError()
 
     def turn_on_mouth(self):
-        raise NotImplementedError()
+        print("Mouth: OPEN!", end="")
 
     def turn_off_mouth(self):
-        raise NotImplementedError()
+        print("   CLOSED!")

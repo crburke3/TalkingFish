@@ -1,10 +1,9 @@
 # firmware defined modules
-import time
-import os
-os.chdir("../")
+import time, os, sys
+sys.path.insert(1, '../')
 
 # user defined modules
-from ..billy_bass_controller import Device
+from billy_bass_controller import Device
 
 device = Device()
 
