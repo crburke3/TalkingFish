@@ -24,12 +24,13 @@ class FishFirestore:
         print("Successfully received object from queue: ", results)
         return results
 
-    def add_request_to_queue(self, message: str, commands: str):
+    def add_request_to_queue(self, message: str, commands: str, audio_url :str):
         # prepare post object
         new_request = Bubbles()
         new_request.queue_count = datetime.utcnow().timestamp()
         new_request.speech_text = message
         new_request.commands = commands
+        new_request.audio_url = audio_url
         request_json = new_request.dict()
 
         # send object to database
