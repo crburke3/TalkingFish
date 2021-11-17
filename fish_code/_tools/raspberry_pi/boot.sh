@@ -1,5 +1,5 @@
 echo "moving to fish_code dir"
-cd ../../
+cd /home/pi/TalkingFish/fish_code
 pwd
 echo "pulling latest code..."
 git stash
