@@ -8,7 +8,7 @@ from multiprocessing import Pool
 from .motor_controller import MotorController
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
-from .globals import AUDIO_START_OFFSET
+from .globals import AUDIO_START_OFFSET, _parse_movement_and_duration
 
 MOUTH_OPEN_CMD = "O"
 MOUTH_CLOSED_CMD = "C"
@@ -16,11 +16,6 @@ UPPER_BODY_ON_CMD = "UPPER_ON"
 UPPER_BODY_OFF_CMD = "UPPER_OFF"
 LOWER_BODY_ON_CMD = "LOWER_ON"
 LOWER_BODY_OFF_CMD = "LOWER_OFF"
-
-def _parse_movement_and_duration(command):
-    movement = command.split(":")[0]
-    duration = int(command.split(":")[1])
-    return movement, duration
 
 
 class FishController:

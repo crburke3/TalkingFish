@@ -1,6 +1,5 @@
 import audioread
-from .globals import AUDIO_SHORTENING
-
+from .globals import AUDIO_SHORTENING, _parse_movement_and_duration
 
 class FishCommand:
 
@@ -28,8 +27,7 @@ class FishCommand:
     def command_unit_length(self) -> int:
         total_cmd_duration = 0
         for cmd in self.commands:
-            parts = cmd.split(":")
-            duration = int(parts[1])
+            movement, duration = _parse_movement_and_duration(cmd)
             total_cmd_duration += duration
         return total_cmd_duration
 
