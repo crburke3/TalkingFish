@@ -8,6 +8,7 @@ from .motor_controller import MotorController
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
 
+AUDIO_OFFSET = 0.65
 
 class FishController:
 
@@ -32,7 +33,7 @@ class FishController:
         print("threads finished!")
 
     def _move_to_commands(self):
-        time.sleep(0.7)
+        time.sleep(AUDIO_OFFSET)
         print("moving to commands: ", self.current_task.commands)
         for cmd in self.current_task.commands:
             if ("C" in cmd) or ("O" in cmd):

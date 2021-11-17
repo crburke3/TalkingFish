@@ -1,5 +1,7 @@
 import audioread
 
+AUDIO_OFFSET = 0.65
+
 
 class FishCommand:
 
@@ -33,5 +35,5 @@ class FishCommand:
         with audioread.audio_open(self.local_song_url) as f:
             totalsec = f.duration
             min, sec = divmod(totalsec, 60)
-            return sec
+            return sec - AUDIO_OFFSET
 
