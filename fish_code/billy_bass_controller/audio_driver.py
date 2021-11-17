@@ -9,7 +9,7 @@ class AudioDriver:
         file_wav = wave.open(file_path)
         frequency = file_wav.getframerate()
         pygame.mixer.init(frequency=frequency)
-        assert os.path.exists(file_path)
+        assert os.path.exists(file_path), Exception("Cant find file: ", file_path)
         pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy() == True:
