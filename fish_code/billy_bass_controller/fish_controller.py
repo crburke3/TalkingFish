@@ -49,6 +49,7 @@ class FishController:
         self.ad.play_wav_file(self.current_task.local_song_url)
 
     def _handle_mouth_movement(self, command: str):
+        print("Executing command: ", command)
         movement = command[0]
         duration = int(command[1])
         if movement == "C":
@@ -59,7 +60,9 @@ class FishController:
 
     def sleep_for_units(self, units):
         prescaler = self.current_task.get_expected_prescaler()
-        time.sleep(units * prescaler)
+        sleep_time = units * prescaler
+        print("sleeping for (s): ", sleep_time)
+        time.sleep(sleep_time)
 
 
 
