@@ -1,0 +1,21 @@
+# firmware defined modules
+import time
+
+# user defined modules
+from device import Device
+
+device = Device()
+
+while True:
+    device.mc.turn_on_mouth()
+    time.sleep(1)
+    device.mc.turn_off_mouth()
+    time.sleep(1)
+    device.mc.turn_on_upper_body()
+    time.sleep(1)
+    device.mc.turn_off_upper_body()
+    time.sleep(1)
+    device.mc.turn_on_lower_body()
+    time.sleep(1)
+    device.mc.turn_off_lower_body()
+    time.sleep(1)
