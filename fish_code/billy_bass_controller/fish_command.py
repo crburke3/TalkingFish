@@ -1,6 +1,5 @@
 import audioread
-
-AUDIO_OFFSET = 0.7
+import globals
 
 
 class FishCommand:
@@ -35,5 +34,5 @@ class FishCommand:
         with audioread.audio_open(self.local_song_url) as f:
             totalsec = f.duration
             min, sec = divmod(totalsec, 60)
-            return sec - AUDIO_OFFSET
+            return sec - globals.AUDIO_SHORTENING
 

@@ -7,8 +7,8 @@ from multiprocessing import Pool
 from .motor_controller import MotorController
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
+import globals
 
-AUDIO_OFFSET = 0.6
 
 
 class FishController:
@@ -34,7 +34,7 @@ class FishController:
         print("threads finished!")
 
     def _move_to_commands(self):
-        time.sleep(AUDIO_OFFSET)
+        time.sleep(globals.AUDIO_START_OFFSET)
         print("moving to commands: ", self.current_task.commands)
         for cmd in self.current_task.commands:
             if ("C" in cmd) or ("O" in cmd):
