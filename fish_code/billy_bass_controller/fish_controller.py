@@ -1,6 +1,7 @@
 # system modules
 import time
-from threading import Thread
+from multiprocessing import Pool
+
 
 # user defined modules
 from .motor_controller import MotorController
@@ -24,16 +25,10 @@ class FishController:
 
         database_object.validate()
         self.current_task = database_object
-        movement_thread = Thread(target=self._move_to_commands)
-        song_thread = Thread(target=self._play_song)
-        threads = [movement_thread]
-        # begin performance
-        for thread in threads:
-            thread.start()
-        # Wait for all of them to finish
-        # time.sleep(3)
-        for x in threads:
-            x.join()
+
+        # run in sync
+
+
         print("threads finished!")
 
     def _move_to_commands(self):

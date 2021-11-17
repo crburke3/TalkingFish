@@ -17,4 +17,20 @@ fake_command.speech_text = "You know where I keep my money? The river bank"
 device.fish_api.download_song_for_object(fake_command)
 
 device.fc.current_task = fake_command
-device.fc.perform(fake_command)
+# device.fc.perform(fake_command)
+
+def run_parallel(*functions):
+    '''
+    Run functions in parallel
+    '''
+    from multiprocessing import Process
+    processes = []
+    for function in functions:
+        proc = Process(target=function)
+        proc.start()
+        processes.append(proc)
+    for proc in processes:
+        proc.join()
+
+if __name__ == '__main__':
+    run_parallel(device.fc._move_to_commands())
