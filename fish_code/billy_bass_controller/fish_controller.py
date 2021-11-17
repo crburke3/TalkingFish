@@ -16,6 +16,9 @@ class FishController:
         self.current_task: FishCommand
 
     def perform(self, database_object: FishCommand):
+        print("performing!")
+        print("Expected movement duration (units): ", database_object.command_unit_length())
+        print("Expected song duration (s): ", database_object.song_length_seconds())
         database_object.validate()
         self.current_task = database_object
         movement_thread = Thread(target=self._move_to_commands)
