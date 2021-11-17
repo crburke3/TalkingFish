@@ -3,7 +3,7 @@ from gpiozero import LED
 import time
 
 # user defined modules
-from motor_controller import MotorController
+from billy_bass_controller import MotorController
 
 
 class RPIMotorController(MotorController):

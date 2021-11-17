@@ -2,7 +2,7 @@
 import time
 
 # user defined modules
-from device import Device
+from billy_bass_controller import Device
 
 # globals
 device = Device()

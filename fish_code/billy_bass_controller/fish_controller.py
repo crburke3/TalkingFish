@@ -1,11 +1,11 @@
 # system modules
 import time
+from threading import Thread
 
 # user defined modules
-from motor_controller import MotorController
-from threading import Thread
-from fish_command import FishCommand
-from audio_driver import AudioDriver
+from .motor_controller import MotorController
+from .fish_command import FishCommand
+from .audio_driver import AudioDriver
 
 
 class FishController:

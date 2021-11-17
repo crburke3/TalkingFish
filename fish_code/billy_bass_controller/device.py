@@ -1,7 +1,7 @@
-from motor_controller import MotorController
-from fish_controller import FishController
-from audio_driver import AudioDriver
-from fish_api import FishAPI
+from .motor_controller import MotorController
+from .fish_controller import FishController
+from .audio_driver import AudioDriver
+from .fish_api import FishAPI
 
 class Device:
 
@@ -17,19 +17,19 @@ class Device:
 
     def _initalize_motor_controller(self):
         try:
-            from ports.esp_based_micropython.esp32_motor_controller import ESP32MotorController
+            from .ports.esp_based_micropython.esp32_motor_controller import ESP32MotorController
             self.mc = ESP32MotorController()
             print("Motor Controller Device Identified: ESP32")
         except:
             pass
         try:
-            from ports.raspberry_pi.raspberry_pi_motor_controller import RPIMotorController
+            from .ports.raspberry_pi.raspberry_pi_motor_controller import RPIMotorController
             self.mc = RPIMotorController()
             print("Motor Controller Device Identified: Raspberry PI")
         except:
             pass
         try:
-            from ports.mac.mac_motor_controller import FakeMotorController
+            from .ports.mac.mac_motor_controller import FakeMotorController
             self.mc = FakeMotorController()
             print("Motor Controller Device Identified: Local Computer")
         except:

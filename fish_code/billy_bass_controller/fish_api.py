@@ -1,5 +1,6 @@
 import requests, os
-from fish_command import FishCommand
+
+from .fish_command import FishCommand
 
 
 def _download_file(url):
