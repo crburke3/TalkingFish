@@ -1,8 +1,6 @@
 # firmware defined modules
-import time
-import os
-os.chdir("../")
-print("curr dir: ", os.getcwd())
+import time, os, sys
+sys.path.insert(1, '../')
 
 # user defined modules
 from billy_bass_controller.device import Device
