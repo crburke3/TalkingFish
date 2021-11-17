@@ -36,6 +36,8 @@ class FishController:
         p1.start()
         p2 = Process(target=self._move_to_commands)
         p2.start()
+        p1.join()
+        p2.join()
         # run in sync
 
 
