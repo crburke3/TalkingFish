@@ -1,6 +1,7 @@
 import audioread
 from .globals import AUDIO_SHORTENING, _parse_movement_and_duration
 
+
 class FishCommand:
 
     commands: [str]
