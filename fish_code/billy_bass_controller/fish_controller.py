@@ -32,7 +32,7 @@ class FishController:
         print("threads finished!")
 
     def _move_to_commands(self):
-        sleep(0.1)
+        time.sleep(0.1)
         print("moving to commands: ", self.current_task.commands)
         for cmd in self.current_task.commands:
             if ("C" in cmd) or ("O" in cmd):
