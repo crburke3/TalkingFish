@@ -7,6 +7,10 @@ def _download_file(url):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     local_filename = url.split('/')[-1]
     local_path = f"{dir_path}/downloads/{local_filename}"
+    if os.path.exists(local_path):
+        print("WAV file already exists, deleteing...")
+        os.remove(local_path)
+        print("existing WAV file deleted!")
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         with open(local_path, 'wb') as f:
