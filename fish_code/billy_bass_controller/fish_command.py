@@ -8,6 +8,7 @@ class FishCommand:
     song_url: str
     speech_text: str
     local_song_url: str
+    audio_start_offset = 0.0
     _expected_prescaler = None
 
     def validate(self):
@@ -19,7 +20,7 @@ class FishCommand:
         if not self._expected_prescaler:
             total_units = self.command_unit_length()
             song_time_s = self.song_length_seconds()
-            return float(song_time_s / total_units)
+            return float(song_time_s - self.audio_start_offset / total_units)
         else:
             return self._expected_prescaler
 
@@ -34,5 +35,5 @@ class FishCommand:
         with audioread.audio_open(self.local_song_url) as f:
             totalsec = f.duration
             min, sec = divmod(totalsec, 60)
-            return sec - AUDIO_SHORTENING
+            return sec
 

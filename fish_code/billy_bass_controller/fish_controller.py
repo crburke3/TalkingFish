@@ -42,8 +42,8 @@ class FishController:
         print("threads finished!")
 
     def _move_to_commands(self):
+        time.sleep(self.current_task.audio_start_offset)
         start_time = datetime.now().timestamp()
-        time.sleep(AUDIO_START_OFFSET)
         print("moving to commands: ", self.current_task.commands)
         for cmd in self.current_task.commands:
             if ("C" in cmd) or ("O" in cmd):
