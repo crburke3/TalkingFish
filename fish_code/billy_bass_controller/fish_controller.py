@@ -55,6 +55,7 @@ class FishController:
         p1.join()
         p2.join()
         print("threads finished!")
+        self.reset()
 
     def reset(self):
         self.mc.turn_off_mouth()
