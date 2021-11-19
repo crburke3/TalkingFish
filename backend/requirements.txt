@@ -3,3 +3,4 @@ pydantic
 nltk
 gtts
 google.cloud
+pydub

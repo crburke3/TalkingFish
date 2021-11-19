@@ -2,12 +2,12 @@ import json
 
 from routes.post_to_queue import post_to_queue
 from routes.get_from_queue import get_from_queue
-from structs import server_globals, fish_firestore, text_to_commands, mp3_creator
+from structs import server_globals, fish_firestore, text_to_commands, wav_creator
 
 # Globals Creation
 server_globals.fish_firestore = fish_firestore.FishFirestore()
 server_globals.text_to_commands = text_to_commands.TextToCommands()
-server_globals.mp3_creator = mp3_creator.Mp3Creator()
+server_globals.wav_creator = wav_creator.WavCreator()
 
 
 def hello_world(request):
