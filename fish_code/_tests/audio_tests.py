@@ -16,3 +16,5 @@ def test_wav_play():
     file_path = "../_resources/joke.wav"
     driver = AudioDriver()
     driver.play_file(file_path)
+
+test_wav_play()
