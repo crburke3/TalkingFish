@@ -6,7 +6,7 @@ sudo apt-get ffmpeg
 
 echo "add the following line to the end of the next file: "
 echo ""
-echo "@reboot bash /home/pi/TalkingFish/fish_code/_tools/raspberry_pi/boot.sh &"
+echo "@reboot sudo bash /home/pi/TalkingFish/fish_code/_tools/raspberry_pi/boot.sh &"
 echo ""
 echo ""
 sleep 2
