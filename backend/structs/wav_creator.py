@@ -4,12 +4,12 @@ from datetime import datetime
 from structs import server_globals
 import os
 
-class Mp3Creator:
+class WavCreator:
 
     # Generate an audio file for the given senetence, upload it to google cloud, and return a url to the file
     def textToSpeach(self, sentence: str):
         timeSec = int(datetime.utcnow().timestamp())
-        filename = "audio_" + str(timeSec) + ".mp3"
+        filename = "audio_" + str(timeSec) + ".wav"
         print(filename)
         soundObj = gTTS(text=sentence, lang='en', slow=False)
         soundObj.save("/tmp/" + filename)

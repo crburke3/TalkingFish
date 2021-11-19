@@ -14,6 +14,6 @@ def post_to_queue(request):
         # When a word can't be deciphered, return these commands for the words "I'm sorry I do not understand the word _____"
         commands = "['O:4', 'C:2', 'C:2', 'O:4', 'C:2', 'O:1', 'O:4', 'C:2', 'O:4', 'C:2', 'O:4', 'C:2', 'O:3', 'C:2', 'C:2', 'O:1', 'C:2', 'C:2', 'O:4', 'C:2', 'C:2', 'C:2', 'O:1', 'C:2', 'O:4', 'C:2', 'O:1']"
         text = "Im sorry I do not understand the word " + str(err)
-    audio_url = server_globals.mp3_creator.textToSpeach(text)
+    audio_url = server_globals.wav_creator.textToSpeach(text)
     server_globals.fish_firestore.add_request_to_queue(text, commands, audio_url)
     return json.dumps({"text_added_to_queue": text, "commands": commands, "audio_url": audio_url}), 201
