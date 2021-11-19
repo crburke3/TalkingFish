@@ -19,6 +19,10 @@ LOWER_BODY_OFF_CMD = "LOWER_OFF"
 
 audio_driver = AudioDriver()
 
+default_movements = [
+    ["LOWER_ON:2"]
+]
+
 class FishController:
 
     _upper_body_was_on = False
@@ -88,6 +92,9 @@ class FishController:
                 print("Cannot move to cmd: ", cmd, flush=True)
         diff = datetime.now().timestamp() - start_time
         print(f"it took {diff}s  to move")
+
+    def boredom_movement(self):
+        raise NotImplementedError()
 
     def _play_song(self):
         if not self.current_task.local_song_url:

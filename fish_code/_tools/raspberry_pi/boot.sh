@@ -1,3 +1,5 @@
+echo "Sleeping for 30 seconds to allow boot"
+sleep 30
 echo "moving to fish_code dir"
 cd /home/pi/TalkingFish/fish_code
 pwd
@@ -7,4 +9,4 @@ git pull --force
 echo "installing dependencies..."
 pip3 install -r _tools/raspberry_pi/requirements.txt
 echo "starting fish!"
-python3 main.py &
+python3 main.py
