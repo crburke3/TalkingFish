@@ -21,6 +21,8 @@ audio_driver = AudioDriver()
 
 class FishController:
 
+    _upper_body_was_on = False
+
     def __init__(self, motor_controller: MotorController, audio_driver: AudioDriver):
         self.mc = motor_controller
         self.ad = audio_driver
@@ -70,6 +72,8 @@ class FishController:
             movement, duration = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
                 self._handle_mouth_movement(cmd)
+                if duration == 1:
+                    self._toggle_body()
             elif movement in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
                 self._handle_upper_body_movement(cmd)
             elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
@@ -119,9 +123,13 @@ class FishController:
         print("sleeping for (s): ", sleep_time)
         time.sleep(sleep_time)
 
-    def _toggle_lower_body(self):
-        if self.mc.lower_body_on:
-            self.mc.turn_off_lower_body()
-        else:
+    def _toggle_body(self):
+        if self.mc.upper_body_on:
+            self.mc.turn_off_upper_body()
             self.mc.turn_on_lower_body()
+        elif self.mc.lower_body_on:
+            self.mc.turn_off_lower_body()
+            self.mc.turn_on_upper_body()
+
+
 
