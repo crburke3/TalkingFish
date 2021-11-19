@@ -1,5 +1,6 @@
 import audioread
 from .globals import AUDIO_SHORTENING, _parse_movement_and_duration
+from .audio_driver import AudioDriver
 
 
 class FishCommand:
@@ -16,11 +17,12 @@ class FishCommand:
         self.get_expected_prescaler()
 
     def get_expected_prescaler(self) -> float:
+        audio_diver = AudioDriver()
         if not self._expected_prescaler:
             if not self.local_song_url:
                 return 0.25
             total_units = self.command_unit_length()
-            song_time_s = self.song_length_seconds()
+            song_time_s = audio_diver.get_audio_length_seconds(self.local_song_url)
             return float(song_time_s - self.audio_start_offset / total_units)
         else:
             return self._expected_prescaler
@@ -32,12 +34,4 @@ class FishCommand:
             total_cmd_duration += duration
         return total_cmd_duration
 
-    def song_length_seconds(self) -> float:
-        if not self.local_song_url:
-            print("NO SONG AVAILABLE")
-            return 0.0
-        with audioread.audio_open(self.local_song_url) as f:
-            totalsec = f.duration
-            min, sec = divmod(totalsec, 60)
-            return sec
 

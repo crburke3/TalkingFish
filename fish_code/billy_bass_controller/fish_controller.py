@@ -17,6 +17,7 @@ UPPER_BODY_OFF_CMD = "UPPER_OFF"
 LOWER_BODY_ON_CMD = "LOWER_ON"
 LOWER_BODY_OFF_CMD = "LOWER_OFF"
 
+audio_driver = AudioDriver()
 
 class FishController:
 
@@ -37,7 +38,7 @@ class FishController:
         print("Expected movement duration (units): ", database_object.command_unit_length())
         print("Unit Duration (s): ", database_object.get_expected_prescaler())
         print("Expected movement duration (s): ", database_object.command_unit_length() * database_object.get_expected_prescaler())
-        print("Expected song duration (s): ", database_object.song_length_seconds())
+        print("Expected song duration (s): ", audio_driver.get_audio_length_seconds(database_object.local_song_url))
         print("")
         print("performing!")
 
@@ -79,7 +80,7 @@ class FishController:
             print("No song to play!")
             return
         print("playgin song...", flush=True)
-        self.ad.play_wav_file(self.current_task.local_song_url)
+        self.ad.play_file(self.current_task.local_song_url)
 
     def _handle_mouth_movement(self, command: str):
         print("Executing command: ", command)
