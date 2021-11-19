@@ -20,9 +20,12 @@ class FishFirestore:
     def get_request_from_queue(self):
         doc_ref = self.db.collection("fish_1_queue")
         query = doc_ref.order_by("queue_count").limit(1)
-        results = query.get()[0].to_dict()
-        print("Successfully received object from queue: ", results)
-        return results
+        try:
+            results = query.get()[0].to_dict()
+            print("Successfully received object from queue: ", results)
+            return results
+        except IndexError:
+            return 404
 
     def add_request_to_queue(self, message: str, commands: str, audio_url :str):
         # prepare post object
