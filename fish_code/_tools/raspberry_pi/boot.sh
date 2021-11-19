@@ -1,12 +1,14 @@
 echo "Sleeping for 30 seconds to allow boot"
 sleep 30
-echo "moving to fish_code dir"
-cd /home/pi/TalkingFish/fish_code
-pwd
-echo "pulling latest code..."
-git stash
-git pull --force
-echo "installing dependencies..."
-pip3 install -r _tools/raspberry_pi/requirements.txt
-echo "starting fish!"
-python3 main.py
+#echo "moving to fish_code dir"
+#cd /home/pi/TalkingFish/fish_code
+#pwd
+#echo "pulling latest code..."
+#git stash
+#git pull --force
+#echo "installing dependencies..."
+#pip3 install -r _tools/raspberry_pi/requirements.txt
+#echo "starting fish!"
+#python3 main.py
+#sleep 10
+lxterminal -e sudo pkill python3; cd /home/pi/TalkingFish/fish_code; python3 main.py
