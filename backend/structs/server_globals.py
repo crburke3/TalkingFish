@@ -12,3 +12,4 @@ gcs_cred_path = f"{base_folder_path}/resources/credentials.json"
 fish_firestore: FishFirestore = None
 text_to_commands: TextToCommands = None
 wav_creator: WavCreator = None
+language_key = "en"

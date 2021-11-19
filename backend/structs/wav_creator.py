@@ -11,7 +11,7 @@ class WavCreator:
     def textToSpeach(self, sentence: str):
         timeSec = int(datetime.utcnow().timestamp())
         filename = "audio_" + str(timeSec)
-        soundObj = gTTS(text=sentence, lang='en', slow=False)
+        soundObj = gTTS(text=sentence, lang=server_globals.language_key, slow=False)
         soundObj.save("/tmp/" + filename + ".mp3")
 
         print("Converting " + filename + ".mp3 to " + filename + ".wav")
