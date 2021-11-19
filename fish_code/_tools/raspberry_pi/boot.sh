@@ -11,4 +11,4 @@ sleep 30
 #echo "starting fish!"
 #python3 main.py
 #sleep 10
-lxterminal -e sudo pkill python3; cd /home/pi/TalkingFish/fish_code; python3 main.py
+lxterminal -e python3 /home/pi/TalkingFish/fish_code/main.py
