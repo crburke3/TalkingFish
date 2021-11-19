@@ -68,7 +68,7 @@ class FishController:
             elif movement in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
                 self._handle_upper_body_movement(cmd)
             elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
-                self._handle_upper_body_movement(cmd)
+                self._handle_lower_body_movement(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
         diff = datetime.now().timestamp() - start_time
