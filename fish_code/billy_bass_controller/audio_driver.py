@@ -40,12 +40,12 @@ class AudioDriver:
         while mixer.music.get_busy() == True:
             continue
 
-    # def _play_mp3_file(self, file_path:str):
-    #     mixer.init()
-    #     mixer.music.load(file_path)
-    #     mixer.music.play()
-    #     while mixer.music.get_busy():  # wait for music to finish playing
-    #         time.sleep(0.1)
+    def _play_mp3_file(self, file_path:str):
+        mixer.init()
+        mixer.music.load(file_path)
+        mixer.music.play()
+        while mixer.music.get_busy():  # wait for music to finish playing
+            time.sleep(0.1)
 
     # def _get_mp3_length(self, file_path:str)->float:
     #     mixer.init()
