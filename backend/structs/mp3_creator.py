@@ -12,13 +12,13 @@ class Mp3Creator:
         filename = "audio_" + str(timeSec) + ".mp3"
         print(filename)
         soundObj = gTTS(text=sentence, lang='en', slow=False)
-        soundObj.save(filename)
+        soundObj.save("/tmp/" + filename)
 
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = server_globals.gcs_cred_path
         storage_client = storage.Client()
         bucket_name = "fish-1-audio-files"
         bucket = storage_client.bucket(bucket_name)
         blob = bucket.blob(filename)
-        blob.upload_from_filename(filename)
+        blob.upload_from_filename("/tmp/" + filename)
         print("File {} uploaded to {}.".format(filename, bucket_name))
         return "https://storage.googleapis.com/" + bucket_name + "/" + filename
