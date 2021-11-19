@@ -25,7 +25,7 @@ if __name__ == '__main__':
                 device.fish_api.download_song_for_object(command)
 
                 command._expected_prescaler = command.get_expected_prescaler()
-                command.audio_start_offset = 0.5
+                command.audio_start_offset = 0.0
                 device.fc.perform(command)
                 time.sleep(5)
             else:

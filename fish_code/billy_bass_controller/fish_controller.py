@@ -47,6 +47,7 @@ class FishController:
 
         print("BEGINNING PARALLELISM")
         from multiprocessing import Process
+        self.mc.turn_on_upper_body()
         p1 = Process(target=self._play_song)
         p1.start()
         p2 = Process(target=self._move_to_commands)
@@ -54,6 +55,11 @@ class FishController:
         p1.join()
         p2.join()
         print("threads finished!")
+
+    def reset(self):
+        self.mc.turn_off_mouth()
+        self.mc.turn_off_upper_body()
+        self.mc.turn_off_lower_body()
 
     def _move_to_commands(self):
         time.sleep(self.current_task.audio_start_offset)
