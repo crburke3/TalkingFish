@@ -1,7 +1,7 @@
 import requests, os
 
 from .fish_command import FishCommand
-
+from .audio_driver import AudioDriver
 
 def _download_file(url):
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -27,4 +27,9 @@ class FishAPI:
 
     def download_song_for_object(self, cmd: FishCommand):
         local_url = _download_file(cmd.song_url)
+        if "mp3" in local_url:
+            print("file recognized as .mp3 converting...")
+            audio_driver = AudioDriver()
+            wav_path = audio_driver.convert_mp3_to_wav(local_url)
+            cmd.local_song_url = wav_path
         cmd.local_song_url = local_url

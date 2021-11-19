@@ -55,9 +55,6 @@ class FishController:
         p2.join()
         print("threads finished!")
 
-
-
-
     def _move_to_commands(self):
         time.sleep(self.current_task.audio_start_offset)
         start_time = datetime.now().timestamp()

@@ -2,3 +2,4 @@ pygame
 audioread
 wave
 mutagen
+pydub
