@@ -9,6 +9,7 @@ device = Device()
 
 if __name__ == '__main__':
     while True:
+        print("listening for new messages...")
         try:
             getRequest = device.fish_api.get_next_item_in_queue()
             if getRequest.status_code == 200:
