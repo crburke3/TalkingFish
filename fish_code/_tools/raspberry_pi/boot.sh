@@ -7,4 +7,4 @@ git pull --force
 echo "installing dependencies..."
 pip3 install -r _tools/raspberry_pi/requirements.txt
 echo "starting fish!"
-python3 main.py
+python3 main.py &
