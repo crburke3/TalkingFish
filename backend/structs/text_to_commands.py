@@ -55,5 +55,3 @@ class TextToCommands:
         commands = TextToCommands.convertToOandC(phoneticBreakdown)
         print("Open/Close + durations: " + str(commands))
         return str(commands)
-
-
