@@ -23,12 +23,7 @@ def _download_file(url):
 class FishAPI:
 
     def get_next_item_in_queue(self):
-        # HTTP request
-        # download song
-        raise NotImplementedError()
-
-    def remove_item_from_queue(self, item_id:str):
-        raise NotImplementedError()
+        return requests.get("http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/get_from_queue")
 
     def download_song_for_object(self, cmd: FishCommand):
         local_url = _download_file(cmd.song_url)

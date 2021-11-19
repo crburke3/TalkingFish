@@ -2,29 +2,33 @@
 import time
 
 # user defined modules
-from billy_bass_controller import Device
-from billy_bass_controller import FishCommand
+from billy_bass_controller import Device, FishCommand
 
 # globals
 device = Device()
 
 if __name__ == '__main__':
-    exit(0)
     while True:
         try:
-            fake_command = FishCommand()
-            fake_command.commands = ['C2', 'O4', 'C2', 'O4', 'C2', 'O4', 'C2', 'O4', 'C2', 'O4', 'C2', 'C2', 'O4', 'C2', 'O4',
-                                     'C2', 'O1',
-                                     'C2', 'O1', 'C2', 'O4', 'C2', 'O1', 'C2', 'O4', 'C2', 'C2']
-            fake_command.song_url = "https://storage.googleapis.com/fish-1-audio-files/joke.wav"
-            fake_command.speech_text = "You know where I keep my money? The river bank"
-            device.fish_api.download_song_for_object(fake_command)
+            getRequest = device.fish_api.get_next_item_in_queue()
+            if getRequest.status_code == 200:
+                json_data = getRequest.json()
+                command = FishCommand()
+                commands_str = json_data['commands']
+                commands_str = commands_str.strip('[')
+                commands_str = commands_str.strip(']')
+                commands_str = commands_str.replace('\'', '')
+                commands_str = commands_str.replace(' ', '')
+                commands = commands_str.split(',')
+                command.commands = commands
+                command.song_url = json_data['audio_url']
+                device.fish_api.download_song_for_object(command)
 
-            fake_command._expected_prescaler = 0.04789855072463768
-            fake_command.audio_start_offset = 0.5
-            device.fc.perform(fake_command)
-            time.sleep(5)
-            device.fc.happy_dance()
-            time.sleep(5)
+                command._expected_prescaler = command.get_expected_prescaler()
+                command.audio_start_offset = 0.5
+                device.fc.perform(command)
+                time.sleep(5)
+            else:
+               time.sleep(5)
         except Exception as e:
             print("FATAL EXCEPTION: ", str(e))
