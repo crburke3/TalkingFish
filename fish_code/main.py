@@ -27,8 +27,9 @@ if __name__ == '__main__':
                 command._expected_prescaler = command.get_expected_prescaler()
                 command.audio_start_offset = 0.0
                 device.fc.perform(command)
-                time.sleep(5)
+                time.sleep(1)
+                device.fc.reset()
             else:
-               time.sleep(5)
+               time.sleep(1)
         except Exception as e:
             print("FATAL EXCEPTION: ", str(e))
