@@ -6,9 +6,9 @@ class MotorController:
     INA_3 = None
     INA_4 = None
 
-    _upper_body_on: bool = False
-    _lower_body_on: bool = False
-    _mouth_on: bool = False
+    upper_body_on: bool = False
+    lower_body_on: bool = False
+    mouth_on: bool = False
 
     def turn_on_upper_body(self):
         print("Upper Body: ON!")

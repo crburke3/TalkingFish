@@ -11,9 +11,9 @@ class RPIMotorController(MotorController):
     INA_2 = LED(15)
     INA_3 = LED(18)
 
-    _upper_body_on = False
-    _lower_body_on = False
-    _mouth_on = False
+    upper_body_on = False
+    lower_body_on = False
+    mouth_on = False
 
     def __init__(self):
         for pin in [self.INA_1, self.INA_2, self.INA_3]:

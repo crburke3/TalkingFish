@@ -8,9 +8,9 @@ class ESP32MotorController(MotorController):
     INA_2 = machine.Pin(12, machine.Pin.OUT)  # Pin D1 on board, blue wire
     INA_3 = machine.Pin(27, machine.Pin.OUT)  # Pin D2 on board, brown wire
 
-    _upper_body_on = False
-    _lower_body_on = False
-    _mouth_on = False
+    upper_body_on = False
+    lower_body_on = False
+    mouth_on = False
 
     def __init__(self):
         for pin in [self.INA_1, self.INA_2, self.INA_3]:

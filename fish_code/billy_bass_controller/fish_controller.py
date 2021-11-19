@@ -119,6 +119,9 @@ class FishController:
         print("sleeping for (s): ", sleep_time)
         time.sleep(sleep_time)
 
-
-
+    def _toggle_lower_body(self):
+        if self.mc.lower_body_on:
+            self.mc.turn_off_lower_body()
+        else:
+            self.mc.turn_on_lower_body()
 
