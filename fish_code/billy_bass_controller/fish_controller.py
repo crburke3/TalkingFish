@@ -22,6 +22,7 @@ audio_driver = AudioDriver()
 class FishController:
 
     _upper_body_was_on = False
+    current_task = None
 
     def __init__(self, motor_controller: MotorController, audio_driver: AudioDriver):
         self.mc = motor_controller
@@ -64,11 +65,16 @@ class FishController:
         self.mc.turn_off_upper_body()
         self.mc.turn_off_lower_body()
 
-    def _move_to_commands(self):
-        time.sleep(self.current_task.audio_start_offset)
+    def _move_to_commands(self, only_testing_cmds=None):
         start_time = datetime.now().timestamp()
-        print("moving to commands: ", self.current_task.commands)
-        for cmd in self.current_task.commands:
+        movements = None
+        if self.current_task:
+            time.sleep(self.current_task.audio_start_offset)
+            movements = self.current_task.commands
+        else:
+            movements = only_testing_cmds
+        print("moving to commands: ", movements)
+        for cmd in movements:
             movement, duration = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
                 self._handle_mouth_movement(cmd)
@@ -118,6 +124,9 @@ class FishController:
         self._sleep_for_units(duration)
 
     def _sleep_for_units(self, units):
+        if not self.current_task:
+            time.sleep(0.2)
+            return
         prescaler = self.current_task.get_expected_prescaler()
         sleep_time = units * prescaler
         print("sleeping for (s): ", sleep_time)

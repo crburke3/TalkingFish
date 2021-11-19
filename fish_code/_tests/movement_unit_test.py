@@ -1,5 +1,5 @@
 # firmware defined modules
-import time, os, sys
+import time, os, sys, pytest
 sys.path.insert(1, '../')
 
 # user defined modules
@@ -7,16 +7,16 @@ from billy_bass_controller import Device
 from billy_bass_controller import FishCommand
 
 
-def test_failure():
+def test_failure_1():
     device = Device()
+    with pytest.raises(Exception):
+        movements = ["LOWER_ON:5", "UPPER_ON:5"]
+        device.fc._move_to_commands(movements)
 
-    movements = ["LOWER_ON:5", "UPPER_ON:5"]
-    fake_command = FishCommand()
-    fake_command.commands = movements
-    fake_command.song_url = "https://storage.googleapis.com/fish-1-audio-files/audio_1637294327.mp3"
-    fake_command.speech_text = "You know where I keep my money? The river bank"
-    device.fish_api.download_song_for_object(fake_command)
 
-    fake_command._expected_prescaler = 0.04789855072463768
-    # fake_command.audio_start_offset = 0.5
-    device.fc.perform(fake_command)
+def test_failure_2():
+    device = Device()
+    with pytest.raises(Exception):
+        movements = ["UPPER_ON:5", "LOWER_ON:5"]
+        device.fc._move_to_commands(movements)
+
