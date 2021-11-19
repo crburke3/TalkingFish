@@ -1,11 +1,4 @@
 import nltk
-import time
-import string
-from gtts import gTTS
-import os
-from pygame import mixer
-from mutagen.mp3 import MP3
-from structs import server_globals
 
 class TextToCommands:
 
@@ -56,37 +49,7 @@ class TextToCommands:
 
         return oAndC
 
-    # Generate an audio file for the given senetence and return the length of the audio file in seconds
-    def textToSpeach(sentence):
-        mixer.init()
-        soundObj = gTTS(text=sentence, lang='en', slow=False)
-        soundObj.save("sentence.mp3")
-        audio = MP3("sentence.mp3")
-        mixer.music.load("sentence.mp3")
-        mixer.music.play()
-        return audio.info.length
-
-    # Returns the total amount of time of each open and closed position
-    def getTotalMovementTime(oAndC):
-        totalTime = 0
-        for position in oAndC:
-            totalTime = totalTime + int(position[-1])
-        return totalTime
-
-    def saySentence(sentence, oAndC):
-        # Subtrack 0.5 seconds from audio length to account for dead time
-        audioLength = TextToCommands.textToSpeach(sentence) - 0.5
-        totalTime = TextToCommands.getTotalMovementTime(oAndC)
-        interval = audioLength/totalTime
-        for position in oAndC:
-            if position[0] == 'C':
-                print("Closed")
-            if position[0] == 'O':
-                print("Open")
-            time.sleep(int(position[-1]) * interval)
-
-    def convertTextToCommands(text: str):
-        text = text.translate(str.maketrans('', '', string.punctuation))
+    def convertTextToCommands(self, text: str):
         phoneticBreakdown = TextToCommands.phoneticBreakdown(text)
         print("Phonetic breakdown: " + str(phoneticBreakdown))
         commands = TextToCommands.convertToOandC(phoneticBreakdown)
