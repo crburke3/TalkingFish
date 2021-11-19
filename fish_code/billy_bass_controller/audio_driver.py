@@ -20,6 +20,8 @@ class AudioDriver:
             raise Exception(f"File type: {file_path} not recognized")
 
     def get_audio_length_seconds(self, file_path: str) -> float:
+        if not file_path:
+            return 5.0
         if "mp3" in file_path:
             raise Exception("Must pass a .wav file")
             # return self._get_mp3_length(file_path)
