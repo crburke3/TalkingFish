@@ -9,6 +9,7 @@ from billy_bass_controller import FishCommand
 device = Device()
 
 if __name__ == '__main__':
+    exit(0)
     while True:
         try:
             fake_command = FishCommand()
