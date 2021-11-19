@@ -32,4 +32,5 @@ class FishAPI:
             audio_driver = AudioDriver()
             wav_path = audio_driver.convert_mp3_to_wav(local_url)
             cmd.local_song_url = wav_path
+            return
         cmd.local_song_url = local_url
