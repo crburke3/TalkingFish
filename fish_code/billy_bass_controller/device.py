@@ -2,6 +2,8 @@ from .motor_controller import MotorController
 from .fish_controller import FishController
 from .audio_driver import AudioDriver
 from .fish_api import FishAPI
+from uuid import getnode
+
 
 class Device:
 
@@ -46,3 +48,7 @@ class Device:
 
     def _initalize_fish_api(self):
         self.fish_api = FishAPI()
+
+    def get_unique_id(self) -> str:
+        mac_raw = getnode()
+        return ':'.join(("%012X" % mac_raw)[i:i+2] for i in range(0, 12, 2))
