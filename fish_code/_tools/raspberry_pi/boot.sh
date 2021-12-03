@@ -11,4 +11,4 @@ pip3 install -r _tools/raspberry_pi/requirements.txt
 
 # DO NOT FUCK WITH tHE STUFF UP TOP
 echo "starting fish!"
-python3 main.py &
+python3 main.py
