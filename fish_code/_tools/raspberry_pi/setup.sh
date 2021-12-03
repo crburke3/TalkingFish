@@ -1,6 +1,5 @@
 sudo chmod a+x /home/pi/TalkingFish/fish_code/_tools/raspberry_pi/boot.sh
 sudo chmod 777 /home/pi/TalkingFish/fish_code/billy_bass_controller/downloads
-sudo apt-get ffmpeg
 #curl -sS https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2samp.sh | bash
 
 
