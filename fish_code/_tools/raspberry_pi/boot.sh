@@ -4,6 +4,8 @@ echo "moving to fish_code dir"
 cd /home/pi/TalkingFish/fish_code
 pwd
 echo "pulling latest code..."
+git config --global user.email "fish@billybass.com"
+git config --global user.name "Billy bass"
 git stash
 git pull --force
 echo "installing dependencies..."

@@ -1,23 +1,38 @@
 import wave, time
-from pygame import mixer
+import pygame as pg
 import os
 from mutagen.mp3 import MP3
 import audioread
 from os import path
 from pydub import AudioSegment
 
+freq = 44100  # audio CD quality
+bitsize = -16  # unsigned 16 bit
+channels = 2  # 1 is mono, 2 is stereo
+buffer = 2048  # number of samples (experiment to get right sound)
+
+
 class AudioDriver:
 
-    # def __init__(self):
+    def __init__(self):
+        pg.mixer.init(freq, bitsize, channels, buffer)
 
-    def play_file(self, file_path:str):
-        if "mp3" in file_path:
-            raise Exception("must be .wav file")
-            # self._play_mp3_file(file_path)
-        elif "wav" in file_path:
-            self._play_wav_file(file_path)
-        else:
-            raise Exception(f"File type: {file_path} not recognized")
+    def play_file(self, file_path: str):
+        """
+        stream music with mixer.music module in blocking manner
+        this will stream the sound from disk while playing
+        """
+        clock = pg.time.Clock()
+        try:
+            pg.mixer.music.load(file_path)
+            print("Music file {} loaded!".format(file_path))
+        except pg.error:
+            print("File {} not found! {}".format(file_path, pg.get_error()))
+            return
+
+        pg.mixer.music.play()
+        while pg.mixer.music.get_busy():
+            clock.tick(30)
 
     def get_audio_length_seconds(self, file_path: str) -> float:
         if not file_path:
@@ -29,23 +44,6 @@ class AudioDriver:
             return self._get_wav_length(file_path)
         else:
             raise Exception(f"File type: {file_path} not recognized for time length")
-
-    def _play_wav_file(self, file_path: str):
-        file_wav = wave.open(file_path)
-        frequency = file_wav.getframerate()
-        mixer.init(frequency=frequency)
-        assert os.path.exists(file_path), Exception("Cant find file: ", file_path)
-        mixer.music.load(file_path)
-        mixer.music.play()
-        while mixer.music.get_busy() == True:
-            continue
-
-    def _play_mp3_file(self, file_path:str):
-        mixer.init()
-        mixer.music.load(file_path)
-        mixer.music.play()
-        while mixer.music.get_busy():  # wait for music to finish playing
-            time.sleep(0.1)
 
     # def _get_mp3_length(self, file_path:str)->float:
     #     mixer.init()
