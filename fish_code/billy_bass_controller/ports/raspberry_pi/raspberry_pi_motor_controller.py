@@ -9,7 +9,7 @@ from billy_bass_controller import MotorController
 class RPIMotorController(MotorController):
     INA_1 = LED(14)
     INA_2 = LED(15)
-    INA_3 = LED(18)
+    INA_3 = LED(17)
 
     upper_body_on = False
     lower_body_on = False
