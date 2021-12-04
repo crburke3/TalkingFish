@@ -47,6 +47,7 @@ class FishController:
         command.commands = ["LOWER_ON:2", "LOWER_OFF:2", "UPPER_ON:2", "UPPER_OFF:2", "O:2", "LOWER_ON:2", "LOWER_OFF:2",
                      "LOWER_ON:2", "LOWER_OFF:2", "C:2"]
         command.local_song_url = f"{base_path}/downloads/joke.wav"
+        self.perform(command)
 
     def perform(self, database_object: FishCommand):
         print("Expected movement duration (units): ", database_object.command_unit_length())
