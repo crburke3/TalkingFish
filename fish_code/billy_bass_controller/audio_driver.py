@@ -4,7 +4,7 @@ from pydub import AudioSegment
 
 freq = 44100  # audio CD quality
 bitsize = -16  # unsigned 16 bit
-channels = 1  # 1 is mono, 2 is stereo
+channels = 2  # 1 is mono, 2 is stereo
 buffer = 2048  # number of samples (experiment to get right sound)
 
 
