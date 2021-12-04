@@ -16,7 +16,7 @@ class AudioDriver:
     #     pg.mixer.music.set_volume(volume)
 
     def play_file(self, file_path: str):
-        os.system("aplay /usr/share/sounds/alsa/Front_Center.wav &")
+        os.system(f"aplay {file_path} &")
 
     # def play_file(self, file_path: str):
     #     """
