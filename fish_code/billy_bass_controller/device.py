@@ -3,6 +3,9 @@ from .fish_controller import FishController
 from .audio_driver import AudioDriver
 from .fish_api import FishAPI
 from uuid import getnode
+import os
+
+base_path = os.path.dirname(os.path.realpath(__file__))
 
 
 class Device:

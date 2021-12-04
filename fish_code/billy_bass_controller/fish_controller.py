@@ -9,6 +9,7 @@ from .motor_controller import MotorController
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
 from .globals import AUDIO_START_OFFSET, _parse_movement_and_duration
+from device import base_path
 
 MOUTH_OPEN_CMD = "O"
 MOUTH_CLOSED_CMD = "C"
@@ -40,6 +41,12 @@ class FishController:
         command = FishCommand()
         command.commands = movements
         self.perform(command)
+
+    def boot_perforance(self):
+        command = FishCommand()
+        command.commands = ["LOWER_ON:2", "LOWER_OFF:2", "UPPER_ON:2", "UPPER_OFF:2", "O:2", "LOWER_ON:2", "LOWER_OFF:2",
+                     "LOWER_ON:2", "LOWER_OFF:2", "C:2"]
+        command.local_song_url = f"{base_path}/downloads/joke.wav"
 
     def perform(self, database_object: FishCommand):
         print("Expected movement duration (units): ", database_object.command_unit_length())
