@@ -1,3 +1,6 @@
+echo "Setting up Wifi passwords"
+
+
 echo "Sleeping for 30 seconds to allow boot"
 sleep 30
 echo "moving to fish_code dir"
