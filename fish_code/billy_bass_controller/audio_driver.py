@@ -7,7 +7,7 @@ freq = 16000  # wav frequency
 bitsize = -16  # unsigned 16 bit
 channels = 2  # 1 is mono, 2 is stereo
 buffer = 1024  # number of samples (experiment to get right sound)
-vol = 0.75
+vol = 0.95
 
 class AudioDriver:
 
