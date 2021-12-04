@@ -17,6 +17,7 @@ class RPIMotorController(MotorController):
 
     def __init__(self):
         for pin in [self.INA_1, self.INA_2, self.INA_3]:
+            print("Turning off pin: ", pin.pin)
             pin.off()
 
     def turn_on_upper_body(self):
