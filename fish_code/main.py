@@ -5,9 +5,8 @@ import time
 from billy_bass_controller import Device, FishCommand
 
 # globals
-device = Device()
-
 if __name__ == '__main__':
+    device = Device()
     while True:
         print("listening for new messages...")
         try:
