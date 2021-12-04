@@ -1,4 +1,6 @@
-from ..audio_driver import AudioDriver
+import sys
+sys.path.append("..")
+from audio_driver import AudioDriver  # ignore warning
 
 
 def test_mp3():
