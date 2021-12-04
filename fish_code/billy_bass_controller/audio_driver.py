@@ -1,14 +1,10 @@
-import wave, time
 import pygame as pg
-import os
-from mutagen.mp3 import MP3
 import audioread
-from os import path
 from pydub import AudioSegment
 
 freq = 44100  # audio CD quality
 bitsize = -16  # unsigned 16 bit
-channels = 2  # 1 is mono, 2 is stereo
+channels = 1  # 1 is mono, 2 is stereo
 buffer = 2048  # number of samples (experiment to get right sound)
 
 
@@ -61,7 +57,7 @@ class AudioDriver:
 
     def convert_mp3_to_wav(self, mp3_path:str):
         out_path = mp3_path[:-3]  # sketchy
-        out_path += ".wav"
+        out_path += "wav"
         sound = AudioSegment.from_mp3(mp3_path)
         sound.export(out_path, format="wav")
         return out_path
