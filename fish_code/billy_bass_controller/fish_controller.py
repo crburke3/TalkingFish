@@ -53,14 +53,16 @@ class FishController:
         self.current_task = database_object
 
         print("BEGINNING PARALLELISM")
-        from multiprocessing import Process
+        # from multiprocessing import Process
         self.mc.turn_on_upper_body()
-        p1 = Process(target=self._play_song)
-        p1.start()
-        p2 = Process(target=self._move_to_commands)
-        p2.start()
-        p1.join()
-        p2.join()
+        # p1 = Process(target=self._play_song)
+        # p1.start()
+        # p2 = Process(target=self._move_to_commands)
+        # p2.start()
+        # p1.join()
+        # p2.join()
+        self._play_song()
+        self._move_to_commands()
         print("threads finished!")
         self.reset()
 
