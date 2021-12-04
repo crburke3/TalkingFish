@@ -15,5 +15,5 @@ from billy_bass_controller import Device, FishCommand
 
 if __name__ == '__main__':
     device = Device()
-    test_wav_play()
+    device.fc.boot_perforance()
 
