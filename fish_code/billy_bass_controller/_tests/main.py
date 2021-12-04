@@ -8,6 +8,7 @@ def test_wav_play():
     driver = AudioDriver()
     driver.play_file(file_path)
 
+sys.path.append("../..")
 from billy_bass_controller import Device, FishCommand
 
 if __name__ == '__main__':
