@@ -27,7 +27,7 @@ class Device:
             pass
         try:
             from .ports.raspberry_pi.raspberry_pi_motor_controller import RPIMotorController
-            self.mc = RPIMotorController()
+            # self.mc = RPIMotorController()
             print("Motor Controller Device Identified: Raspberry PI")
             return
         except:
