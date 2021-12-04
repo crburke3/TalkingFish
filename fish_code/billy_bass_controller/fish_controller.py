@@ -8,8 +8,7 @@ from multiprocessing import Pool
 from .motor_controller import MotorController
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
-from .globals import AUDIO_START_OFFSET, _parse_movement_and_duration
-from device import base_path
+from .globals import AUDIO_START_OFFSET, _parse_movement_and_duration, base_path
 
 MOUTH_OPEN_CMD = "O"
 MOUTH_CLOSED_CMD = "C"
