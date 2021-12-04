@@ -6,12 +6,13 @@ freq = 44100  # audio CD quality
 bitsize = -16  # unsigned 16 bit
 channels = 2  # 1 is mono, 2 is stereo
 buffer = 2048  # number of samples (experiment to get right sound)
-
+volume = 0.75
 
 class AudioDriver:
 
     def __init__(self):
         pg.mixer.init(freq, bitsize, channels, buffer)
+        pg.mixer.music.set_volume(volume)
 
     def play_file(self, file_path: str):
         """
