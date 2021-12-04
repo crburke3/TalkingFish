@@ -19,4 +19,5 @@ def test_wav_play():
     driver = AudioDriver()
     driver.play_file(file_path)
 
+
 test_wav_play()
