@@ -1,4 +1,4 @@
-from billy_bass_controller.audio_driver import AudioDriver
+from ..audio_driver import AudioDriver
 
 
 def test_mp3():
