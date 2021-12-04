@@ -14,6 +14,6 @@ sys.path.append("../..")
 from billy_bass_controller import Device, FishCommand
 
 if __name__ == '__main__':
-    # device = Device()
+    device = Device()
     test_wav_play()
 

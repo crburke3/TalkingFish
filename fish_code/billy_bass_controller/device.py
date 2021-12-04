@@ -12,10 +12,10 @@ class Device:
         self.ad: AudioDriver
         self.fc: FishController
         self.fish_api: FishAPI
-        self._initalize_motor_controller()
-        self._initalize_audio_driver()
-        self._initalize_fish_controller()
-        self._initalize_fish_api()
+        # self._initalize_motor_controller()
+        # self._initalize_audio_driver()
+        # self._initalize_fish_controller()
+        # self._initalize_fish_api()
 
     def _initalize_motor_controller(self):
         try:
