@@ -22,7 +22,9 @@ name_to_device_id = {
 }
 
 def parse_fish_id_from_text(message_text: str) -> str:
+    print(f"parsing device id from: {message_text}")
     for key, value in name_to_device_id.items():
+        print(f"checking for key: {key}")
         if key in message_text.lower():
             return value
     return DEFAULT_DEVICE_ID
