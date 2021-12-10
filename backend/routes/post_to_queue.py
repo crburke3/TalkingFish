@@ -4,6 +4,7 @@ import string
 
 
 def post_to_queue(request):
+
     print("parameters passed: ", request)
     request_json = request.get_json()
     print("Json body: ", request_json)
