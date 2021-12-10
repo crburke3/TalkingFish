@@ -11,8 +11,7 @@ def get_from_queue(request):
         request_json = {}
     print("Json body: ", request_json)
 
-    devide_id_raw = request_json.get("device_id", server_globals.DEFAULT_DEVICE_ID)
-    device_id = server_globals.parse_fish_id_from_text(devide_id_raw)
+    device_id = request_json.get("device_id", server_globals.DEFAULT_DEVICE_ID)
     bubbles = server_globals.fish_firestore.get_request_from_queue(device_id)
     print(bubbles)
 
