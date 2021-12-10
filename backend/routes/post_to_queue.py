@@ -3,12 +3,12 @@ from structs import server_globals
 import string
 
 
-
 def post_to_queue(request):
     print("parameters passed: ", request)
     request_json = request.get_json()
     print("Json body: ", request_json)
     text = request.get_json()[0]['message']['text']
+    print(f"recieved text: {text}")
     devide_id = server_globals.parse_fish_id_from_text(text)
     text = text.translate(str.maketrans('', '', string.punctuation))
     try:
