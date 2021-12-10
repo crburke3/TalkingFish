@@ -16,5 +16,4 @@ echo "@reboot bash /home/pi/TalkingFish/fish_code/_tools/raspberry_pi/boot.sh &"
 echo ""
 echo ""
 sleep 2
-
-
+echo "Please reboot your system now!"

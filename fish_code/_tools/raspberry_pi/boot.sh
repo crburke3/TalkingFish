@@ -5,6 +5,7 @@ echo "Sleeping for 30 seconds to allow boot"
 sleep 30
 echo "moving to fish_code dir"
 cd /home/pi/TalkingFish/fish_code
+sudo chown -R pi .git/
 pwd
 echo "pulling latest code..."
 git config --global user.email "fish@billybass.com"

@@ -4,6 +4,7 @@ from .audio_driver import AudioDriver
 from .fish_api import FishAPI
 from uuid import getnode
 import os
+import getmac
 
 
 class Device:
@@ -53,3 +54,13 @@ class Device:
     def get_unique_id(self) -> str:
         mac_raw = getnode()
         return ':'.join(("%012X" % mac_raw)[i:i+2] for i in range(0, 12, 2))
+
+    @staticmethod
+    def get_device_id() -> str:
+        try:
+            mac = getmac.get_mac_address()
+            assert mac is not None
+            return mac
+        except Exception as e:
+            print("Failed to get mac: ", e)
+            return "DEFAULT_DEVICE_ID"

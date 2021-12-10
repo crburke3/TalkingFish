@@ -17,8 +17,8 @@ class FishFirestore:
         self.db = firestore.client()
         print("finished created firestore client!")
     
-    def get_request_from_queue(self):
-        doc_ref = self.db.collection("fish_1_queue")
+    def get_request_from_queue(self, device_id: str):
+        doc_ref = self.db.collection(f"{device_id}_queue")
         query = doc_ref.order_by("queue_count").limit(1)
         try:
             results = query.get()[0].to_dict()
@@ -27,7 +27,7 @@ class FishFirestore:
         except IndexError:
             return 404
 
-    def add_request_to_queue(self, message: str, commands: str, audio_url :str):
+    def add_request_to_queue(self, message: str, commands: str, audio_url :str, device_id: str):
         # prepare post object
         new_request = Bubbles()
         new_request.queue_count = datetime.utcnow().timestamp()
@@ -38,12 +38,12 @@ class FishFirestore:
 
         # send object to database
         document_name = str(uuid.uuid4())
-        doc_ref = self.db.collection("fish_1_queue").document(document_name)
+        doc_ref = self.db.collection(f"{device_id}_queue").document(document_name)
         doc_ref.set(request_json)
         print("Successfully posted object to queue: ", request_json)
     
-    def delete_request_from_queue(self, queue_count: float):
-        doc_ref = self.db.collection("fish_1_queue")
+    def delete_request_from_queue(self, queue_count: float, device_id: str):
+        doc_ref = self.db.collection(f"{device_id}_queue")
         id = doc_ref.where(u'queue_count', u'==', queue_count).get()[0].id
         doc_ref.document(id).delete()
         print("Successfully deleted object from queue with id: ", id)

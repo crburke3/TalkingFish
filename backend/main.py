@@ -22,6 +22,6 @@ def hello_world(request):
     if "post_to_queue" in request.path:
         return post_to_queue(request)
     elif "get_from_queue" in request.path:
-        return get_from_queue()
+        return get_from_queue(request)
     else:
         return json.dumps({"ERROR": "unknown route"}), 401
