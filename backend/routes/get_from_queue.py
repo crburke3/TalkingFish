@@ -7,9 +7,11 @@ def get_from_queue(request):
     commands = "No commands found"
     audio_url = "No Audio URL found"
     request_json = request.get_json()
+    if not request_json:
+        request_json = {}
     print("Json body: ", request_json)
-    devide_id_raw = request_json.get("device_id", server_globals.DEFAULT_DEVICE_ID)
 
+    devide_id_raw = request_json.get("device_id", server_globals.DEFAULT_DEVICE_ID)
     device_id = server_globals.parse_fish_id_from_text(devide_id_raw)
     bubbles = server_globals.fish_firestore.get_request_from_queue(device_id)
     print(bubbles)

@@ -8,6 +8,7 @@ from structs import server_globals
 
 # Use the application default credentials
 
+
 class FishFirestore:
 
     def __init__(self):
