@@ -2,6 +2,7 @@ import json
 
 from routes.post_to_queue import post_to_queue
 from routes.get_from_queue import get_from_queue
+from routes.post_fish_information import post_fish_information
 from structs import server_globals, fish_firestore, text_to_commands, wav_creator
 
 # Globals Creation
@@ -23,5 +24,7 @@ def hello_world(request):
         return post_to_queue(request)
     elif "get_from_queue" in request.path:
         return get_from_queue(request)
+    elif "add_fish_data" in request.path:
+        return post_fish_information(request)
     else:
         return json.dumps({"ERROR": "unknown route"}), 401

@@ -1,4 +1,4 @@
-from fish_code import main
+from backend import main
 from _local_resources_.TestClass import TestClass
 
 

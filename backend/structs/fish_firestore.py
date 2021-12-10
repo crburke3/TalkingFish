@@ -47,3 +47,10 @@ class FishFirestore:
         id = doc_ref.where(u'queue_count', u'==', queue_count).get()[0].id
         doc_ref.document(id).delete()
         print("Successfully deleted object from queue with id: ", id)
+
+    def add_fish_information(self, fish_info: dict):
+        device_id = fish_info.get("device_id", f"UNKNOWN_FISH:{str(uuid.uuid4())}")
+        doc_ref = self.db.collection(f"fish_information").document(device_id)
+        doc_ref.set(fish_info)
+        print(f"successfully upload fish data: {fish_info}")
+
