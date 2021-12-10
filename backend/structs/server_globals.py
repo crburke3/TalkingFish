@@ -18,9 +18,11 @@ name_to_device_id = {
     "lib": "b8:27:eb:e4:59:f4"
 }
 
+DEFAULT_DEVICE_ID = "DEFAULT_DEVICE_ID"
+
 
 def parse_fish_id_from_text(message_text: str) -> str:
     for key, value in name_to_device_id.items():
         if key in message_text:
             return value
-    return "DEFAULT_DEVICE_ID"
+    return DEFAULT_DEVICE_ID

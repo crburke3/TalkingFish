@@ -1,4 +1,4 @@
-import os
+import os, getmac
 
 AUDIO_START_OFFSET = 0.0
 AUDIO_SHORTENING = 0.0
@@ -16,3 +16,12 @@ def _parse_movement_and_duration(command):
     except Exception as e:
         print("Failed to parse command: ", command)
         raise e
+
+def get_device_id() -> str:
+    try:
+        mac = getmac.get_mac_address()
+        assert mac is not None
+        return mac
+    except Exception as e:
+        print("Failed to get mac: ", e)
+        return "DEFAULT_DEVICE_ID"

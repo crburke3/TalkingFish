@@ -2,6 +2,7 @@ import requests, os
 
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
+from .globals import get_device_id
 
 
 def _download_file(url):
@@ -24,7 +25,9 @@ def _download_file(url):
 class FishAPI:
 
     def get_next_item_in_queue(self):
-        return requests.get("http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/get_from_queue")
+        id = get_device_id()
+        url = f"http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/get_from_queue?device_id={id}"
+        return requests.get(url)
 
     def download_song_for_object(self, cmd: FishCommand):
         local_url = _download_file(cmd.song_url)
@@ -35,3 +38,11 @@ class FishAPI:
             cmd.local_song_url = wav_path
             return
         cmd.local_song_url = local_url
+
+    def post_fish_formation(self):
+        url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/add_fish_data"
+        fish_data = {
+            "device_id": get_device_id(),
+            "state": "booting"
+        }
+        requests.post(url, fish_data)
