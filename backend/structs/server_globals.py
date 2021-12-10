@@ -14,12 +14,13 @@ text_to_commands: TextToCommands = None
 wav_creator: WavCreator = None
 language_key = "en"
 
-name_to_device_id = {
-    "lib": "b8:27:eb:e4:59:f4"
-}
-
 DEFAULT_DEVICE_ID = "DEFAULT_DEVICE_ID"
 
+name_to_device_id = {
+    "lib": "b8:27:eb:e4:59:f4",
+    "DEFAULT_DEVICE_ID": "fish_1"
+
+}
 
 def parse_fish_id_from_text(message_text: str) -> str:
     for key, value in name_to_device_id.items():
