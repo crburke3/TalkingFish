@@ -41,7 +41,7 @@ class FishFirestore:
         document_name = str(uuid.uuid4())
         doc_ref = self.db.collection(f"{device_id}_queue").document(document_name)
         doc_ref.set(request_json)
-        print("Successfully posted object to queue: ", request_json)
+        print(f"Successfully posted object to queue for device: {device_id}: {request_json}")
     
     def delete_request_from_queue(self, queue_count: float, device_id: str):
         doc_ref = self.db.collection(f"{device_id}_queue")
