@@ -10,6 +10,7 @@ def post_to_queue(request):
     text = request.get_json()[0]['message']['text']
     print(f"recieved text: {text}")
     devide_id = server_globals.parse_fish_id_from_text(text)
+    print(f"chose device ID: {devide_id}")
     text = text.translate(str.maketrans('', '', string.punctuation))
     try:
         commands = server_globals.text_to_commands.convertTextToCommands(text)
