@@ -32,6 +32,6 @@ if __name__ == '__main__':
                 time.sleep(1)
                 device.fc.reset()
             else:
-               time.sleep(1)
+               time.sleep(2)
         except Exception as e:
             print("FATAL EXCEPTION: ", str(e))

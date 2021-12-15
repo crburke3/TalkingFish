@@ -55,4 +55,3 @@ class FishFirestore:
         doc_ref = self.db.collection(f"fish_information").document(device_id)
         doc_ref.set(fish_info)
         print(f"successfully upload fish data: {fish_info}")
-
