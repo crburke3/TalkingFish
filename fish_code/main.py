@@ -3,6 +3,7 @@ import time, threading
 
 # user defined modules
 from billy_bass_controller import Device, FishCommand
+from billy_bass_controller.globals import get_device_id
 
 
 if __name__ == '__main__':
@@ -10,7 +11,7 @@ if __name__ == '__main__':
     device.fish_api.post_fish_formation()
     # device.fc.boot_perforance()
     while True:
-        print("listening for new messages...")
+        print(f"listening for new messages in collection: {get_device_id()}...")
         try:
             getRequest = device.fish_api.get_next_item_in_queue()
             if getRequest.status_code == 200:

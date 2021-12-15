@@ -19,7 +19,9 @@ class FishFirestore:
         print("finished created firestore client!")
     
     def get_request_from_queue(self, device_id: str):
-        doc_ref = self.db.collection(f"{device_id}_queue")
+        collection_name = f"{device_id}_queue"
+        print("checking queue for collection: ", collection_name)
+        doc_ref = self.db.collection(collection_name)
         query = doc_ref.order_by("queue_count").limit(1)
         try:
             results = query.get()[0].to_dict()

@@ -6,8 +6,8 @@ def get_from_queue(request):
     print("Request to get latest from queue received")
     commands = "No commands found"
     audio_url = "No Audio URL found"
-    device_id = request.args.get('device_id', server_globals.DEFAULT_DEVICE_ID)
-    print("checking queue for device: ", device_id)
+    arguments = server_globals.parse_basic_arguments(request)
+    device_id = arguments.get('device_id', server_globals.DEFAULT_DEVICE_ID)
     bubbles = server_globals.fish_firestore.get_request_from_queue(device_id)
     print(bubbles)
 
