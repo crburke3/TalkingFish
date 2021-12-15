@@ -4,8 +4,9 @@ sudo cp -f ~/TalkingFish/fish_code/_tools/raspberry_pi/wpa_supplicant.conf /etc/
 echo "Sleeping for 30 seconds to allow boot"
 sleep 30
 echo "moving to fish_code dir"
-cd /home/pi/TalkingFish/fish_code
+cd /home/pi/TalkingFish/
 sudo chown -R pi .git/
+cd fish_code
 pwd
 echo "pulling latest code..."
 git config --global user.email "fish@billybass.com"

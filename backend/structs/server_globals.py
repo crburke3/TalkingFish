@@ -31,3 +31,37 @@ def parse_fish_id_from_text(message_text: str) -> str:
             return value
     return DEFAULT_DEVICE_ID
 
+
+def parse_basic_arguments(request):
+    try:
+        fields = {}
+        data = {}
+        try:
+            data.update(request.args)
+            print(f"got request.args: {data}")
+        except: x = 5
+
+        try:
+            data.update(request.form.to_dict())
+            print(f"got request.form: {data}")
+        except:x = 5
+
+        try:
+            data.update(request.get_json())
+            print(f"got request.get_json(): {data}")
+        except: x = 5
+
+        try:
+            fields["files"] = request.files.to_dict()
+            print(f"got request files: {fields['files']}")
+        except: x = 5
+
+        for field in data:
+            fields[field] = data[field]
+        print(f"received arguments: {fields.items()}")
+        fields["requestMethod"] = request.method
+        return fields
+    except Exception as e:
+        print(f"parse_basic_arguments error: {str(e)}")
+        return None
+

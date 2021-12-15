@@ -7,6 +7,7 @@ from billy_bass_controller import Device, FishCommand
 # globals
 if __name__ == '__main__':
     device = Device()
+    device.fish_api.post_fish_formation()
     # device.fc.boot_perforance()
     while True:
         print("listening for new messages...")
