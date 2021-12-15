@@ -6,7 +6,7 @@ sleep 30
 echo "moving to fish_code dir"
 cd /home/pi/TalkingFish/
 sudo chown -R pi .git/
-cd fish_code
+cd fish_code/
 pwd
 echo "pulling latest code..."
 git config --global user.email "fish@billybass.com"

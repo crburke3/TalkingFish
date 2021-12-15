@@ -19,7 +19,7 @@ DEFAULT_DEVICE_ID = "DEFAULT_DEVICE_ID"
 name_to_device_id = {
     "lib": "b8:27:eb:e4:59:f4",
     "DEFAULT_DEVICE_ID": "fish_1",
-    "memae": "0c:e4:41:f3:79:95"
+    "memae": "b8:27:eb:d6:63:07"
 }
 
 
