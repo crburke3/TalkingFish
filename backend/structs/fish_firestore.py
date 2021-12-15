@@ -50,6 +50,7 @@ class FishFirestore:
         print("Successfully deleted object from queue with id: ", id)
 
     def add_fish_information(self, fish_info: dict):
+        assert fish_info is not None
         device_id = fish_info.get("device_id", f"UNKNOWN_FISH:{str(uuid.uuid4())}")
         doc_ref = self.db.collection(f"fish_information").document(device_id)
         doc_ref.set(fish_info)

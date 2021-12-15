@@ -39,6 +39,7 @@ class FishAPI:
             return
         cmd.local_song_url = local_url
 
+
     def post_fish_formation(self):
         url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/add_fish_data"
         fish_data = {
@@ -46,3 +47,4 @@ class FishAPI:
             "state": "booting"
         }
         requests.post(url, fish_data)
+        print("successfully posted fish boot info")
