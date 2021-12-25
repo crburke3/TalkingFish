@@ -17,7 +17,7 @@ language_key = "en"
 DEFAULT_DEVICE_ID = "DEFAULT_DEVICE_ID"
 
 name_to_device_id = {
-    "grandma": "b8:27:eb:e4:59:f4",
+    "maddie": "b8:27:eb:e4:59:f4",
     "memae": "b8:27:eb:d6:63:07",
     "DEFAULT_DEVICE_ID": "fish_1",
 }
