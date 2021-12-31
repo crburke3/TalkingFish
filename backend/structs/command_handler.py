@@ -19,7 +19,7 @@ def _handle_language_change(message_text: str, device_id: str) -> str:
     current_fish_info = server_globals.fish_firestore.get_fish_information(device_id)
     current_fish_info.language_key = lang_key
     server_globals.fish_firestore.set_fish_information(current_fish_info.dict())
-    return f"now I am {lang_name}"
+    return f"now I am a {lang_name} fish"
 
 
 def handle_command_and_return_message(message_text: str, device_id: str) -> str:
