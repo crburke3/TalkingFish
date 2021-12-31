@@ -3,3 +3,4 @@ wave
 mutagen
 pydub
 get-mac
+pydantic

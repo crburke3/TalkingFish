@@ -1,4 +1,4 @@
-import os, getmac
+import os, getmac, platform
 
 AUDIO_START_OFFSET = 0.0
 AUDIO_SHORTENING = 0.0
@@ -18,6 +18,8 @@ def _parse_movement_and_duration(command):
         raise e
 
 def get_device_id() -> str:
+    if "mac" in platform.platform():
+        return "computer"
     try:
         mac = getmac.get_mac_address()
         assert mac is not None
