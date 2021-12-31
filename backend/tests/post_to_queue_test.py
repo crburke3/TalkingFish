@@ -23,8 +23,8 @@ def test_bubbles_object_creation_success_201():
     ])
     fake_post.path = "post_to_queue"
     fake_post.method = "POST"
-    main.hello_world(fake_post)
-
+    resp = main.hello_world(fake_post)
+    assert resp[1] == 201
 
 def test_bubbles_object_creation_success_201_many_accents():
     import gtts
@@ -55,4 +55,5 @@ def test_bubbles_object_creation_success_201_many_accents():
         ])
         fake_post.path = "post_to_queue"
         fake_post.method = "POST"
-        main.hello_world(fake_post)
+        resp = main.hello_world(fake_post)
+        assert resp[1] == 201

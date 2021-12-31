@@ -16,7 +16,7 @@ language_key = "en"
 
 DEFAULT_DEVICE_ID = "DEFAULT_DEVICE_ID"
 
-name_to_device_id = {
+NAME_TO_DEVICE_ID_DEFAULT = {
     "maddie": "b8:27:eb:e4:59:f4",
     "memae": "b8:27:eb:12:ea:dc",
     "grandma": "b8:27:eb:d6:63:07",
@@ -26,6 +26,7 @@ name_to_device_id = {
 
 def parse_fish_id_from_text(message_text: str) -> str:
     print(f"parsing device id from: {message_text}")
+    name_to_device_id = fish_firestore.get_name_to_device_id_dict()
     for key, value in name_to_device_id.items():
         search_text = message_text.lower()
         print(f"checking for key: {key} in {message_text}")
