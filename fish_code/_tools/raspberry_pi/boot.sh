@@ -1,8 +1,8 @@
 echo "Setting up Wifi passwords"
 sudo cp -f ~/TalkingFish/fish_code/_tools/raspberry_pi/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 
-echo "Sleeping for 30 seconds to allow boot"
-sleep 30
+echo "Sleeping for 10 seconds to allow boot"
+sleep 10
 echo "moving to fish_code dir"
 cd /home/pi/TalkingFish/
 sudo chown -R pi .git/
