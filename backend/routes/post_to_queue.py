@@ -10,8 +10,8 @@ def post_to_queue(request):
     print("Json body: ", request_json)
     text = request.get_json()[0]['message']['text']
     print(f"recieved text: {text}")
-    devide_id = server_globals.parse_fish_id_from_text(text)
-    print(f"chose device ID: {devide_id}")
+    device_ids = server_globals.parse_fish_id_from_text(text)
+    print(f"chose devices by ID: {device_ids}")
     text = text.translate(str.maketrans('', '', string.punctuation))
     try:
         commands = server_globals.text_to_commands.convertTextToCommands(text)
@@ -21,5 +21,6 @@ def post_to_queue(request):
 
         # text = "Im sorry I do not understand the word " + str(err)
     audio_url = server_globals.wav_creator.textToSpeach(text)
-    server_globals.fish_firestore.add_request_to_queue(text, commands, audio_url, devide_id)
+    for device in device_ids:
+        server_globals.fish_firestore.add_request_to_queue(text, commands, audio_url, device)
     return json.dumps({"text_added_to_queue": text, "commands": commands, "audio_url": audio_url}), 201

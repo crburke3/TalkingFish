@@ -24,22 +24,25 @@ NAME_TO_DEVICE_ID_DEFAULT = {
 }
 
 
-def parse_fish_id_from_text(message_text: str) -> str:
+def parse_fish_id_from_text(message_text: str) -> [str]:
     print(f"parsing device id from: {message_text}")
     name_to_device_id = fish_firestore.get_name_to_device_id_dict()
+    matched_devices = []
     for key, value in name_to_device_id.items():
         search_text = message_text.lower()
         print(f"checking for key: {key} in {message_text}")
         if key in search_text:
             # this makes it referenceable by name
-            return value
-        if value in search_text:
+            matched_devices.append(value)
+        elif value in search_text:
             # this makes it referenceable by device ID
-            return key
-        if value.replace(":", "") in search_text:
+            matched_devices.append(value)
+        elif value.replace(":", "") in search_text:
             # this makes it referenceable by device ID
-            return key
-    return DEFAULT_DEVICE_ID
+            matched_devices.append(value)
+    if len(matched_devices) == 0:
+        return [DEFAULT_DEVICE_ID]
+    return matched_devices
 
 
 def parse_basic_arguments(request):
