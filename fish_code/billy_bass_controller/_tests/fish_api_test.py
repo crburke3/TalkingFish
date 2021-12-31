@@ -13,3 +13,11 @@ def test_get_next_queue_item():
     print(data)
 
 
+def test_post_command():
+    text = "memae test test test"
+    resp = api.post_fish_command(text)
+    print(resp)
+    assert resp == 201
+
+
+

@@ -1,3 +1,5 @@
+import json
+
 import requests, os
 from datetime import datetime
 
@@ -40,7 +42,6 @@ class FishAPI:
             return
         cmd.local_song_url = local_url
 
-
     def post_fish_formation(self):
         url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/add_fish_data"
         fish_data = {
@@ -50,3 +51,11 @@ class FishAPI:
         }
         requests.post(url, fish_data)
         print("successfully posted fish boot info")
+
+    def post_fish_command(self, fish_text: str):
+        print(f"posting fish command: {fish_text}")
+        url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/post_to_queue"
+        fish_speech = [{"message": { "text": fish_text}}]
+        resp = requests.post(url, json=fish_speech)
+        print(resp.text)
+        return resp
