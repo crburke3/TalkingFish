@@ -1,4 +1,5 @@
 import requests, os
+from datetime import datetime
 
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
@@ -44,7 +45,8 @@ class FishAPI:
         url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/add_fish_data"
         fish_data = {
             "device_id": get_device_id(),
-            "state": "booting"
+            "state": "booting",
+            "last_updated": datetime.utcnow()
         }
         requests.post(url, fish_data)
         print("successfully posted fish boot info")
