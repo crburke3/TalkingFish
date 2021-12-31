@@ -26,3 +26,18 @@ def test_device_parse_name_from_id_stripped():
     names = server_globals.parse_fish_id_from_text("b827eb12eadc")
     assert "memae" in names
 
+
+def test_find_language_key_by_name():
+    name = "english"
+    key = wav_creator.WavCreator.find_language_key_from_language_parameter(name)[0]
+    assert key == "en"
+
+def test_find_language_key_by_key():
+    name = "en"
+    key = wav_creator.WavCreator.find_language_key_from_language_parameter(name)[0]
+    assert key == "en"
+
+def test_get_fish_information():
+    device_id = "b8:27:eb:e4:59:f4"
+    fish_info = server_globals.fish_firestore.get_fish_information(device_id)
+    assert fish_info.device_id == device_id

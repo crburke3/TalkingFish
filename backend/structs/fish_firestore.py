@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from structs.bubbles import Bubbles
 from structs import server_globals
+from structs.fish_information import FishInformation
 
 # Use the application default credentials
 
@@ -51,7 +52,7 @@ class FishFirestore:
         doc_ref.document(id).delete()
         print("Successfully deleted object from queue with id: ", id)
 
-    def add_fish_information(self, fish_info: dict):
+    def set_fish_information(self, fish_info: dict):
         assert fish_info is not None
         device_id = fish_info.get("device_id", f"UNKNOWN_FISH:{str(uuid.uuid4())}")
         doc_ref = self.db.collection(f"fish_information").document(device_id)
@@ -62,3 +63,10 @@ class FishFirestore:
         config = self.db.collection("globals").document("server_config").get().to_dict()
         server_name_to_device_id = config.get("name_to_device_id", server_globals.NAME_TO_DEVICE_ID_DEFAULT)
         return server_name_to_device_id
+
+    def get_fish_information(self, device_id: str) -> FishInformation:
+        try:
+            info = self.db.collection("fish_information").document(device_id).get().to_dict()
+            return FishInformation(**info)
+        except:
+            return FishInformation()

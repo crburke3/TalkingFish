@@ -1,6 +1,7 @@
-import json
-from structs import server_globals
-import string
+import json, string
+
+from structs import server_globals, command_handler
+
 
 
 def post_to_queue(request):
@@ -20,7 +21,9 @@ def post_to_queue(request):
         commands = "['O:4', 'C:2', 'C:2', 'O:4', 'C:2', 'O:1', 'O:4', 'C:2', 'O:4', 'C:2', 'O:4', 'C:2', 'O:3', 'C:2', 'C:2', 'O:1', 'C:2', 'C:2', 'O:4', 'C:2', 'C:2', 'C:2', 'O:1', 'C:2', 'O:4', 'C:2', 'O:1']"
 
         # text = "Im sorry I do not understand the word " + str(err)
-    audio_url = server_globals.wav_creator.textToSpeach(text)
     for device in device_ids:
+        text = command_handler.handle_command_and_return_message(text, device)
+        fish_language = server_globals.fish_firestore.get_fish_information(device).language_key
+        audio_url = server_globals.wav_creator.textToSpeach(text, fish_language)
         server_globals.fish_firestore.add_request_to_queue(text, commands, audio_url, device)
     return json.dumps({"text_added_to_queue": text, "commands": commands, "audio_url": audio_url}), 201

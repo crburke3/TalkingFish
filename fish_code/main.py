@@ -4,11 +4,13 @@ import time, threading
 # user defined modules
 from billy_bass_controller import Device, FishCommand
 from billy_bass_controller.globals import get_device_id
+from billy_bass_controller.fish_information import FishInformation
 
 
 if __name__ == '__main__':
     device = Device()
-    device.fish_api.post_fish_formation()
+    starting_fish_info = FishInformation(device_id=get_device_id())
+    device.fish_api.post_fish_formation(starting_fish_info)
     device.fish_api.post_fish_command(f"{get_device_id()} I am ALIVE")
     # device.fc.boot_perforance()
     while True:

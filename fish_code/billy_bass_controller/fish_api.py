@@ -6,6 +6,7 @@ from datetime import datetime
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
 from .globals import get_device_id
+from .fish_information import FishInformation
 
 
 def _download_file(url):
@@ -42,14 +43,9 @@ class FishAPI:
             return
         cmd.local_song_url = local_url
 
-    def post_fish_formation(self):
+    def post_fish_formation(self, fish_data: FishInformation):
         url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/add_fish_data"
-        fish_data = {
-            "device_id": get_device_id(),
-            "state": "booting",
-            "last_updated": datetime.utcnow()
-        }
-        requests.post(url, fish_data)
+        requests.post(url, fish_data.dict())
         print("successfully posted fish boot info")
 
     def post_fish_command(self, fish_text: str):

@@ -12,7 +12,7 @@ gcs_cred_path = f"{base_folder_path}/resources/credentials.json"
 fish_firestore: FishFirestore = None
 text_to_commands: TextToCommands = None
 wav_creator: WavCreator = None
-language_key = "en"
+default_language_key = "en"
 
 DEFAULT_DEVICE_ID = "DEFAULT_DEVICE_ID"
 
@@ -36,10 +36,10 @@ def parse_fish_id_from_text(message_text: str) -> [str]:
             matched_devices.append(value)
         elif value in search_text:
             # this makes it referenceable by device ID
-            matched_devices.append(value)
+            matched_devices.append(key)
         elif value.replace(":", "") in search_text:
             # this makes it referenceable by device ID
-            matched_devices.append(value)
+            matched_devices.append(key)
     if len(matched_devices) == 0:
         return [DEFAULT_DEVICE_ID]
     return matched_devices

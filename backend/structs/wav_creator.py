@@ -1,4 +1,4 @@
-from gtts import gTTS
+from gtts import gTTS, lang
 from google.cloud import storage
 from datetime import datetime
 from structs import server_globals
@@ -8,10 +8,14 @@ import os
 class WavCreator:
 
     # Generate an audio file for the given senetence, upload it to google cloud, and return a url to the file
-    def textToSpeach(self, sentence: str):
+    # language can be the key "en" or the language "english"
+    def textToSpeach(self, sentence: str, language: str):
         timeSec = int(datetime.utcnow().timestamp())
         filename = "audio_" + str(timeSec)
-        soundObj = gTTS(text=sentence, lang=server_globals.language_key, slow=False)
+        lang_key, lang_name = WavCreator.find_language_key_from_language_parameter(language)
+        if not lang_key:
+            lang_key = server_globals.default_language_key
+        soundObj = gTTS(text=sentence, lang=lang_key, slow=False)
         soundObj.save("/tmp/" + filename + ".mp3")
 
         print("Converting " + filename + ".mp3 to " + filename + ".wav")
@@ -26,3 +30,11 @@ class WavCreator:
         blob.upload_from_filename("/tmp/" + filename + ".wav")
         print("File {} uploaded to {}.".format(filename + ".wav", bucket_name))
         return "https://storage.googleapis.com/" + bucket_name + "/" + filename + ".wav"
+
+    @staticmethod
+    def find_language_key_from_language_parameter(language_parameter: str):
+        lang_param_clean = language_parameter.lower()
+        for language_key, language_name in lang.tts_langs().items():
+            if (lang_param_clean == language_key) or (lang_param_clean == language_name.lower()):
+                return language_key, language_name
+        return None, None
