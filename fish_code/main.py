@@ -12,7 +12,7 @@ if __name__ == '__main__':
     starting_fish_info = FishInformation(device_id=get_device_id())
     device.fish_api.post_fish_formation(starting_fish_info)
     device.fish_api.post_fish_command(f"{get_device_id()} I am ALIVE")
-    # device.fc.boot_perforance()
+    device.fc.boot_perforance()
     while True:
         print(f"listening for new messages in collection: {get_device_id()}...")
         try:

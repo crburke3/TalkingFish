@@ -44,7 +44,7 @@ class FishController:
     def boot_perforance(self):
         command = FishCommand()
         command.commands = ["LOWER_ON:2", "LOWER_OFF:2", "UPPER_ON:2", "UPPER_OFF:2", "O:2", "LOWER_ON:2", "LOWER_OFF:2",
-                     "LOWER_ON:2", "LOWER_OFF:2", "C:2"]
+                    "LOWER_ON:2", "LOWER_OFF:2", "O:2"]
         command.local_song_url = f"{base_path}/downloads/joke.wav"
         self.perform(command)
 
@@ -61,7 +61,7 @@ class FishController:
 
         print("BEGINNING PARALLELISM")
         # from multiprocessing import Process
-        self.mc.turn_on_upper_body()
+        # self.mc.turn_on_upper_body()
         # p1 = Process(target=self._play_song)
         # p1.start()
         # p2 = Process(target=self._move_to_commands)
