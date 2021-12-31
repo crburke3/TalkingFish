@@ -18,3 +18,9 @@ def test_device_parse_id_from_name():
 def test_device_parse_name_from_id():
     name = server_globals.parse_fish_id_from_text("b8:27:eb:12:ea:dc")
     assert name == "memae"
+
+def test_device_parse_name_from_id_stripped():
+    # this test is necessary because backend strips the : from the device ID in text
+    name = server_globals.parse_fish_id_from_text("b827eb12eadc")
+    assert name == "memae"
+

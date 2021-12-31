@@ -36,7 +36,7 @@ def parse_fish_id_from_text(message_text: str) -> str:
         if value in search_text:
             # this makes it referenceable by device ID
             return key
-        if value in search_text.replace(":", ""):
+        if value.replace(":", "") in search_text:
             # this makes it referenceable by device ID
             return key
     return DEFAULT_DEVICE_ID
