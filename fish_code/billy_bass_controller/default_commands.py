@@ -91,7 +91,7 @@ def down_with_the_sickness():
 
 def look_at_me_now():
     command = FishCommand()
-    crazy_section = ["OC:0.2s"] * 100
+    crazy_section = ["OC:0.2s"] * 50
     command.commands = [
         "SYNC:@4.0",
         "UPPER_ON:0.4s",
