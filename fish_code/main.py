@@ -70,9 +70,9 @@ if __name__ == '__main__':
                     json_data = getRequest.json()
                     speech_text = json_data.get("speech_text", "")
                     print(f"GOT SPEECH TEXT: {speech_text}")
-                    is_local_file = "loc:" in speech_text
+                    is_local_file = "fuckloc:" in speech_text
                     if is_local_file:
-                        local_file_name = speech_text.replace("loc:", "")
+                        local_file_name = speech_text.replace("fuckloc", "")
                         print(f"GETTING LOCAL FILE FOR NAME: {local_file_name}")
                         local_file_name = local_file_name.lower()
                         performance_for_name = default_cmds.for_name(local_file_name)

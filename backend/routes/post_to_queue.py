@@ -1,4 +1,5 @@
 import json, string
+from datetime import datetime
 
 from structs import server_globals, command_handler
 
@@ -15,6 +16,7 @@ def post_to_queue(request):
     if "local:" in text:
         file_name = text.replace("local:", "")
         post_data = {
+            "queue_count": datetime.utcnow().timestamp(),
             "local_file": file_name
         }
         for device_id in device_ids:
