@@ -50,7 +50,7 @@ if __name__ == '__main__':
             secs_since_last_press = (datetime.now() - last_press).total_seconds()
             print(f"It has been {round(secs_since_last_press)}s since you last pressed the button")
             if not button_ever_pressed:
-                if secs_since_last_press >= 60:
+                if secs_since_last_press >= 20:
                     last_press = None
     else:
         device.fc.perform(default_cmds.wazzup_scary_movie())
