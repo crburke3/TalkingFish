@@ -91,19 +91,19 @@ class FishController:
             movement_start_time = datetime.now().timestamp()
             movement, duration = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
-                print(f"mouth start: {time.time()}")
+                print(f"mouth start: {datetime.now().timestamp()}")
                 self._handle_mouth_movement(cmd)
                 if duration == 1:
                     self._toggle_body()
-                print(f"mouth end: {time.time()}")
+                print(f"mouth end: {datetime.now().timestamp()}")
             elif movement in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
-                print(f"upper body start: {time.time()}")
+                print(f"upper body start: {datetime.now().timestamp()}")
                 self._handle_upper_body_movement(cmd)
-                print(f"upper body end: {time.time()}")
+                print(f"upper body end: {datetime.now().timestamp()}")
             elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
-                print(f"lower body start: {time.time()}")
+                print(f"lower body start: {datetime.now().timestamp()}")
                 self._handle_lower_body_movement(cmd)
-                print(f"lower body end: {time.time()}")
+                print(f"lower body end: {datetime.now().timestamp()}")
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
             movement_time= datetime.now().timestamp() - movement_start_time
