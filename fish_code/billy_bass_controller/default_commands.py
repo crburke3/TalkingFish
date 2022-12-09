@@ -12,6 +12,6 @@ def connecting():
 
 def mac_boot():
     command = FishCommand()
-    command.commands = ["UPPER_ON:2", "O:2"]
+    command.commands = ["O:0", "UPPER_ON:2" ]
     command.local_song_url = f"{base_path}/../_resources/mac_startup_sound.wav"
     return command
