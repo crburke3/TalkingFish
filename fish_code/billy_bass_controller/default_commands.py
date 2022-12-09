@@ -27,5 +27,5 @@ def wazzup_scary_movie():
     command = FishCommand()
     command.commands = ["UPPER_ON:0", "O:3", "C:1",  "O:0",
                         "UPPER_OFF:0",  "LOWER_ON:5",  "LOWER_OFF:2", "LOWER_ON:5",  "LOWER_OFF:2"]
-    command.local_song_url = f"{base_path}/../_resources/merry_christmas.wav"
+    command.local_song_url = f"{base_path}/../_resources/wazzup.wav"
     return command
