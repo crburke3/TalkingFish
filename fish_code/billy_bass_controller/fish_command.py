@@ -20,10 +20,14 @@ class FishCommand:
         audio_diver = AudioDriver()
         if not self._expected_prescaler:
             if not self.local_song_url:
+                self._expected_prescaler = 0.25
                 return 0.25
             total_units = self.command_unit_length()
             song_time_s = audio_diver.get_audio_length_seconds(self.local_song_url)
-            return float(song_time_s / total_units) - self.audio_start_offset
+            if total_units == 0:
+                total_units = 1
+            expected_prescalar = float(song_time_s / total_units) - self.audio_start_offset
+            return expected_prescalar
         else:
             return self._expected_prescaler
 
