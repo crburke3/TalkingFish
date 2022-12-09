@@ -144,6 +144,7 @@ class FishController:
 
     def _sleep_for_units(self, units):
         if not self.current_task:
+            print("No current_task, sleeping 0.2")
             time.sleep(0.2)
             return
         prescaler = self.current_task.get_expected_prescaler()
