@@ -68,8 +68,10 @@ if __name__ == '__main__':
                 getRequest = device.fish_api.get_next_item_in_queue()
                 if getRequest.status_code == 200:
                     json_data = getRequest.json()
-                    local_file_name = json_data.get("local_file", None)
-                    if local_file_name:
+                    speech_text = json_data.get("speech_text", "")
+                    is_local_file = "local:" in speech_text
+                    if is_local_file:
+                        local_file_name = speech_text.replace("local:", "")
                         print(f"GETTING LOCAL FILE FOR NAME: {local_file_name}")
                         local_file_name = local_file_name.lower()
                         performance_for_name = default_cmds.for_name(local_file_name)
