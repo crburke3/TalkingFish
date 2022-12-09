@@ -150,7 +150,7 @@ class FishController:
     def _handle_sync(self, start_time: float, secs_to_stop_sync: float, wait_offset: float = 0.0):
         curr_time = datetime.now().timestamp()
         curr_song_time = curr_time - start_time
-        time_until_sync = curr_song_time - secs_to_stop_sync
+        time_until_sync = secs_to_stop_sync - curr_song_time
         time_until_sync += wait_offset
         if time_until_sync <= 0:
             time_until_sync = 0
@@ -159,9 +159,10 @@ class FishController:
 
     def _sleep_for_units(self, units, prescaler, use_ms):
         if use_ms:
-            sleep_time = units / 1000
+            sleep_time = units
             print(f"sleeping for {sleep_time} ms")
             time.sleep(sleep_time)
+            return
         if not self.current_task:
             time.sleep(0.2)
             return

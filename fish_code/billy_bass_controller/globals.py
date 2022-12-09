@@ -18,6 +18,7 @@ def _parse_movement_and_duration(command):
             duration = float(duration_raw)
         else:
             if "s" in duration_raw:
+                use_ms = True
                 duration_raw = duration_raw.replace("s", "")
                 duration = float(duration_raw)
             else:
