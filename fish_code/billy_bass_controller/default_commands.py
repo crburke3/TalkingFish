@@ -16,6 +16,7 @@ def mac_boot():
     command.local_song_url = f"{base_path}/../_resources/mac_startup_sound.wav"
     return command
 
+
 def merry_christmas():
     command = FishCommand()
     command.commands = ["UPPER_ON:0", "O:1", "C:1",  "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
@@ -23,9 +24,18 @@ def merry_christmas():
     command.local_song_url = f"{base_path}/../_resources/merry_christmas.wav"
     return command
 
+
 def wazzup_scary_movie():
     command = FishCommand()
     command.commands = ["UPPER_ON:0", "O:3", "C:1",  "O:0",
                         "UPPER_OFF:0",  "LOWER_ON:5",  "LOWER_OFF:2", "LOWER_ON:5",  "LOWER_OFF:2"]
     command.local_song_url = f"{base_path}/../_resources/wazzup.wav"
+    return command
+
+
+def peter_griffin_giggle():
+    command = FishCommand()
+    command.commands = ["UPPER_ON:0", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
+                        "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1"]
+    command.local_song_url = f"{base_path}/../_resources/peter_griffin_giggle.wav"
     return command

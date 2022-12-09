@@ -10,13 +10,19 @@ import billy_bass_controller.default_commands as default_cmds
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    # internet_connected = device.internet_on()
-    internet_connected = False
     device.fc.perform(default_cmds.mac_boot())
+    internet_attempts = 5
+    internet_connected = False
+    while not internet_connected:
+        device.fc.perform(default_cmds.peter_griffin_giggle())
+        # internet_connected = device.internet_on()
+        internet_connected = False
+        time.sleep(1)
+
     if not internet_connected:
         print("NOT CONNECTED TO INTERNET")
-        device.fc.perform(default_cmds.wazzup_scary_movie())
-        # device.fc.perform(default_cmds.merry_christmas())
+        # device.fc.perform(default_cmds.wazzup_scary_movie())
+        device.fc.perform(default_cmds.merry_christmas())
     else:
         device.fc.perform(default_cmds.wazzup_scary_movie())
         device.fish_api.post_fish_formation(starting_fish_info)
