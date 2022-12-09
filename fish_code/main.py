@@ -69,6 +69,7 @@ if __name__ == '__main__':
                 if getRequest.status_code == 200:
                     json_data = getRequest.json()
                     speech_text = json_data.get("speech_text", "")
+                    print(f"GOT SPEECH TEXT: {speech_text}")
                     is_local_file = "loc:" in speech_text
                     if is_local_file:
                         local_file_name = speech_text.replace("loc:", "")
