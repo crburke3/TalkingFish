@@ -85,5 +85,9 @@ class Device:
         if self.device_type == DeviceType.computer:
             return False
         elif self.device_type == DeviceType.raspberry_pi:
-            import RPi.GPIO as GPIO
-            return GPIO.input(RPI_BUTTON_PIN) == GPIO.HIGH
+            try:
+                x = 5
+                # import RPi.GPIO as GPIO
+                # return GPIO.input(RPI_BUTTON_PIN) == GPIO.HIGH
+            except Exception as e:
+                print(f"BUTTON ERR: {e}")
