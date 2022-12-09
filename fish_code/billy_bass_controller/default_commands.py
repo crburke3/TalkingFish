@@ -71,13 +71,17 @@ def down_with_the_sickness():
                         "LOWER_ON:0.75s", "LOWER_OFF:0.5s", "UPPER_ON:0.75s", "UPPER_OFF:0.5s",
                         "SYNC:@6.5",
                         "UPPER_ON:0.0s", "O:0.25s", "C:0.1s", "O:0.65s", "C:0.1s", "UPPER_OFF:0.5s",   # O WAH AH AH AH
+                        "LOWER_ON:0.5s", "LOWER_OFF:0.5s", "UPPER_ON:0.5s", "UPPER_OFF:0.5s",  # dance
                         "SYNC:@9.4",
                         "UPPER_ON:0.1s", "O:0.5s", "C:0.1s", "O:0.4s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
+                        "LOWER_ON:0.3s", "LOWER_OFF:0.3s",
                         "SYNC:@12.1",
                         "UPPER_ON:0.1s", "O:0.5s", "C:0.1s", "O:0.4s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
+                        "LOWER_ON:0.3s", "LOWER_OFF:0.3s",
                         "SYNC:@14.5",
                         "UPPER_ON:0.1s", "O:0.5s", "C:0.1s", "O:0.4s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
-                        "SYNC:@17.00",
+                        "LOWER_ON:0.3s", "LOWER_OFF:0.3s"
+                        "SYNC:@16.70",
                         "LOWER_ON:0.2s", "LOWER_OFF:0.1s", "UPPER_ON:0.2s", "UPPER_OFF:0.1s",
                         "LOWER_ON:0.2s", "LOWER_OFF:0.1s", "UPPER_ON:0.2s", "UPPER_OFF:0.1s",
     ]
