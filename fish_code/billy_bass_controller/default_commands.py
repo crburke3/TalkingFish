@@ -95,7 +95,7 @@ def look_at_me_now():
     crazy_section_2 = ["OC:0.2s"] * 10
     crazy_section_3 = ["OC:0.2s"] * 10
     crazy_section_4 = ["OC:0.2s"] * 10
-    crazy_section_5 = ["OC:0.2s"] * 2
+    crazy_section_5 = ["OC:0.2s"] * 3
     command.commands = [
         "SYNC:@4.0",
         "UPPER_ON:0.4s",
@@ -111,12 +111,9 @@ def look_at_me_now():
         "UPPER_OFF:0.0s",
         "LOWER_ON:0.0s"
     ] + crazy_section_4 + [
+        "SYNC:@17.5",
         "LOWER_OFF:0.0s",
         "UPPER_ON:0.0s",
-    ] + crazy_section_5 + [
-        "UPPER_OFF:0.0s",
-        "LOWER_ON:0.0s",
-        "SYNC:@17.5",
         "O:0.0s"
     ]
     command.local_song_url = f"{base_path}/../_resources/look_at_me_now.wav"
