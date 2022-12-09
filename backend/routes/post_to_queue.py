@@ -17,7 +17,8 @@ def post_to_queue(request):
         file_name = text.replace("local:", "")
         post_data = {
             "queue_count": datetime.utcnow().timestamp(),
-            "local_file": file_name
+            "local_file": file_name,
+            "devices": device_ids
         }
         for device_id in device_ids:
             server_globals.fish_firestore.post_raw(device_id, post_data)
