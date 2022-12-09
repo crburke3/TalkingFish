@@ -87,3 +87,14 @@ def down_with_the_sickness():
     ]
     command.local_song_url = f"{base_path}/../_resources/down_with_the_sickness.wav"
     return command
+
+
+def look_at_me_now():
+    command = FishCommand()
+    crazy_section = ["OC:0.2s"] * 100
+    command.commands = [
+        "SYNC:@4.0",
+        "UPPER_ON:0.4s",
+    ] + crazy_section
+    command.local_song_url = f"{base_path}/../_resources/look_at_me_now.wav"
+    return command

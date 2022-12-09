@@ -16,6 +16,7 @@ UPPER_BODY_ON_CMD = "UPPER_ON"
 UPPER_BODY_OFF_CMD = "UPPER_OFF"
 LOWER_BODY_ON_CMD = "LOWER_ON"
 LOWER_BODY_OFF_CMD = "LOWER_OFF"
+MOUTH_OPEN_CLOSE = "OC"
 SYNC = "SYNC"
 
 audio_driver = AudioDriver()
@@ -103,6 +104,8 @@ class FishController:
             elif movement in [SYNC]:
                 _, sync_time, use_ms = _parse_movement_and_duration(cmd)
                 self._handle_sync(start_time, sync_time)
+            elif movement in [MOUTH_OPEN_CLOSE]:
+                self._handle_mouth_open_close(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
             movement_time = datetime.now().timestamp() - movement_start_time
@@ -137,6 +140,15 @@ class FishController:
         if movement == UPPER_BODY_OFF_CMD:
             self.mc.turn_off_upper_body()
         self._sleep_for_units(duration, prescalar, use_ms)
+
+    def _handle_mouth_open_close(self, command: str):
+        print("Executing command: ", command)
+        movement, duration, use_ms = _parse_movement_and_duration(command)
+        half_dir = duration / 2
+        self.mc.turn_on_mouth()
+        time.sleep(half_dir)
+        self.mc.turn_off_mouth()
+        time.sleep(half_dir)
 
     def _handle_lower_body_movement(self, command: str, pre_scalar):
         print("Executing command: ", command)
