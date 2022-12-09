@@ -35,7 +35,9 @@ def wazzup_scary_movie():
 
 def peter_griffin_giggle():
     command = FishCommand()
-    command.commands = ["UPPER_ON:0", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
+    command.commands = ["LOWER_ON:0", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
+                        "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
+                        "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
                         "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1", "O:1", "C:1"]
     command.local_song_url = f"{base_path}/../_resources/peter_griffin_giggle.wav"
     return command

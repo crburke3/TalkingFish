@@ -11,12 +11,13 @@ if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
     device.fc.perform(default_cmds.mac_boot())
-    internet_attempts = 5
+    internet_attempts = 3
     internet_connected = False
-    while not internet_connected:
+    while not internet_connected and internet_attempts > 0:
         device.fc.perform(default_cmds.peter_griffin_giggle())
         # internet_connected = device.internet_on()
         internet_connected = False
+        internet_attempts -= 1
         time.sleep(1)
 
     if not internet_connected:
