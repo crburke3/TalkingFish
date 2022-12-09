@@ -149,7 +149,10 @@ class FishController:
         prescaler = self.current_task.get_expected_prescaler()
         sleep_time = units * prescaler
         print("sleeping for (s): ", sleep_time)
+        sleep_start = datetime.now()
         time.sleep(sleep_time)
+        sleep_time = datetime.now() - sleep_start
+        print(f"it took {sleep_time}s to sleep")
 
     def _toggle_body(self):
         if self.mc.upper_body_on:
