@@ -100,7 +100,7 @@ class FishController:
                 self._handle_lower_body_movement(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
-            movement_time= datetime.now().timestamp() - movement_start_time
+            movement_time = datetime.now().timestamp() - movement_start_time
             print(f"it took {movement_time}s  to do: {cmd}")
         diff = datetime.now().timestamp() - start_time
         print(f"it took {diff}s  to move")
@@ -143,6 +143,7 @@ class FishController:
         self._sleep_for_units(duration)
 
     def _sleep_for_units(self, units):
+        sleep_start = datetime.now().timestamp()
         if not self.current_task:
             print("No current_task, sleeping 0.2")
             time.sleep(0.2)
@@ -150,7 +151,6 @@ class FishController:
         prescaler = self.current_task.get_expected_prescaler()
         sleep_time = units * prescaler
         print("sleeping for (s): ", sleep_time)
-        sleep_start = datetime.now().timestamp()
         time.sleep(sleep_time)
         sleep_time = datetime.now().timestamp() - sleep_start
         print(f"it took {sleep_time}s to sleep")
