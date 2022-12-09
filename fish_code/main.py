@@ -80,6 +80,8 @@ if __name__ == '__main__':
                         performance_for_name = default_cmds.for_name(local_file_name)
                         if not performance_for_name:
                             device.fc.perform(default_cmds.minecraft_oof())
+                        else:
+                            device.fc.perform(performance_for_name)
                     else:
                         command = FishCommand()
                         commands_str = json_data['commands']
