@@ -68,7 +68,7 @@ class FishController:
         # p2.start()
         # p1.join()
         # p2.join()
-        self._play_song()
+        # self._play_song()
         self._move_to_commands()
         print("threads finished!")
         self.reset()
