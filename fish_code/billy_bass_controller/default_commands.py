@@ -69,7 +69,7 @@ def down_with_the_sickness():
     command.commands = [
                         "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
                         "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
-                        "SYNC:@7.1",
+                        "SYNC:@6.9",
                         "UPPER_ON:0.0s",
                         "O:0.25s", "C:0.1s", "O:0.65s", "C:0",  # O WAH AH AH AH
                         "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
