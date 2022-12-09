@@ -31,6 +31,12 @@ class FishFirestore:
         except IndexError:
             return 404
 
+    def post_raw(self, device_id: str, data: dict):
+        document_name = str(uuid.uuid4())
+        doc_ref = self.db.collection(f"{device_id}_queue").document(document_name)
+        doc_ref.set(data)
+
+
     def add_request_to_queue(self, message: str, commands: str, audio_url :str, device_id: str):
         # prepare post object
         new_request = Bubbles()

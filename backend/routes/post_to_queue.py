@@ -12,6 +12,15 @@ def post_to_queue(request):
     text = request_json['Body']
     print(f"recieved text: {text}")
     device_ids = server_globals.parse_fish_id_from_text(text)
+    if "local:" in text:
+        file_name = text.replace("local:", "")
+        post_data = {
+            "local_file": file_name
+        }
+        for device_id in device_ids:
+            server_globals.fish_firestore.post_raw(device_id, post_data)
+        return json.dumps(post_data), 201
+
     print(f"chose devices by ID: {device_ids}")
     text = text.translate(str.maketrans('', '', string.punctuation))
     try:
