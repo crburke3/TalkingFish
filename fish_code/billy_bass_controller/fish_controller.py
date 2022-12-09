@@ -68,7 +68,7 @@ class FishController:
         # p2.start()
         # p1.join()
         # p2.join()
-        # self._play_song()
+        self._play_song()
         self._move_to_commands()
         print("threads finished!")
         self.reset()
@@ -88,6 +88,7 @@ class FishController:
             movements = only_testing_cmds
         print("moving to commands: ", movements)
         for cmd in movements:
+            movement_start_time = datetime.now().timestamp()
             movement, duration = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
                 self._handle_mouth_movement(cmd)
@@ -99,6 +100,8 @@ class FishController:
                 self._handle_lower_body_movement(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
+            movement_time= datetime.now().timestamp() - movement_start_time
+            print(f"it took {movement_time}s  to do: {cmd}")
         diff = datetime.now().timestamp() - start_time
         print(f"it took {diff}s  to move")
 
