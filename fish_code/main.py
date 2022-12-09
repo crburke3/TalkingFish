@@ -30,6 +30,7 @@ if __name__ == '__main__':
     if not internet_connected:
         print("NOT CONNECTED TO INTERNET")
         device.fc.perform(default_cmds.minecraft_oof())
+        device._setup_rpi_button()
         offline_performances = [
             default_cmds.jingle_bells_chill(),
             default_cmds.down_with_the_sickness(),
@@ -55,7 +56,7 @@ if __name__ == '__main__':
             secs_since_last_press = (datetime.now() - last_press).total_seconds()
             print(f"It has been {round(secs_since_last_press)}s since you last pressed the button")
             if not button_ever_pressed:
-                if secs_since_last_press >= 60:
+                if secs_since_last_press >= 5 * 60:
                     last_press = None
     else:
         device.fc.perform(default_cmds.wazzup_scary_movie())
