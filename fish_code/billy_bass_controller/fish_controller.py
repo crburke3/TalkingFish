@@ -161,7 +161,7 @@ class FishController:
             time.sleep(0.05)
             self.mc.turn_on_upper_body()
             time.sleep(0.05)
-        if self.mc.upper_body_on:
+        elif self.mc.upper_body_on:
             self.mc.turn_off_upper_body()
             time.sleep(0.05)
             self.mc.turn_on_lower_body()
