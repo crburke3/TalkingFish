@@ -11,8 +11,8 @@ from datetime import datetime
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    # device.fc.perform(default_cmds.mac_boot())
-    device.fc.perform(default_cmds.jingle_bells_chill())
+    device.fc.perform(default_cmds.mac_boot())
+    # device.fc.perform(default_cmds.jingle_bells_chill())
     internet_attempts = 2
     internet_connected = False
     internet_connection_performance = default_cmds.peter_griffin_giggle()
@@ -27,14 +27,17 @@ if __name__ == '__main__':
         print("NOT CONNECTED TO INTERNET")
         device.fc.perform(default_cmds.minecraft_oof())
         offline_performances = [
-            default_cmds.merry_christmas(),
             default_cmds.jingle_bells_chill(),
+            default_cmds.merry_christmas(),
         ]
         button_counter = len(offline_performances) - 1
         last_press = None
+        button_ever_pressed = False
         while True:
-            # button_pressed = device.button_1_pressed()
-            button_pressed = False
+            button_pressed = device.button_1_pressed()
+            if button_pressed:
+                print("button pressed!")
+                button_ever_pressed = True
             if button_pressed or last_press == None:
                 last_press = datetime.now()
                 if button_counter < 0:
@@ -45,8 +48,9 @@ if __name__ == '__main__':
             time.sleep(1)
             secs_since_last_press = (datetime.now() - last_press).total_seconds()
             print(f"It has been {round(secs_since_last_press)}s since you last pressed the button")
-            if secs_since_last_press >= 60:
-                last_press = None
+            if not button_ever_pressed:
+                if secs_since_last_press >= 60:
+                    last_press = None
     else:
         device.fc.perform(default_cmds.wazzup_scary_movie())
         device.fish_api.post_fish_formation(starting_fish_info)
