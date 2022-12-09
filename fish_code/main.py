@@ -11,8 +11,7 @@ from datetime import datetime
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    device.fc.perform(default_cmds.look_at_me_now())
-    # device.fc.perform(default_cmds.jingle_bells_chill())
+    device.fc.perform(default_cmds.jingle_bells_chill())
     internet_attempts = 2
     internet_connected = False
     internet_connection_performance = default_cmds.peter_griffin_giggle()
@@ -28,8 +27,9 @@ if __name__ == '__main__':
         device.fc.perform(default_cmds.minecraft_oof())
         offline_performances = [
             default_cmds.jingle_bells_chill(),
+            default_cmds.down_with_the_sickness(),
+            default_cmds.look_at_me_now(),
             default_cmds.merry_christmas(),
-            default_cmds.down_with_the_sickness()
         ]
         button_counter = len(offline_performances) - 1
         last_press = None
