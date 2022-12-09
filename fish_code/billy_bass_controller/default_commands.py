@@ -67,11 +67,11 @@ def jingle_bells_chill():
 def down_with_the_sickness():
     command = FishCommand()
     command.commands = [
-                        "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1",
-                        "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1",
+                        "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
+                        "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
                         "SYNC:@7.1",
                         "O:0.5s", "C:0.3s", "O:1.5s", "C:0",  # O WAH AH AH AH
-                        "LOWER_ON:1", "LOWER_OFF:1", "UPPER_ON:1", "UPPER_OFF:1",
+                        "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
                         ]
     command.local_song_url = f"{base_path}/../_resources/down_with_the_sickness.wav"
     return command

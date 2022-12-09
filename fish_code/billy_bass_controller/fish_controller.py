@@ -152,6 +152,8 @@ class FishController:
         curr_song_time = curr_time - start_time
         time_until_sync = curr_song_time - secs_to_stop_sync
         time_until_sync += wait_offset
+        if time_until_sync <= 0:
+            time_until_sync = 0
         print(f"Waiting {time_until_sync} to sync up...")
         time.sleep(time_until_sync)
 
