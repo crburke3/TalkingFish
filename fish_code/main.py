@@ -66,8 +66,10 @@ if __name__ == '__main__':
             print(f"listening for new messages in collection: {get_device_id()}...")
             try:
                 getRequest = device.fish_api.get_next_item_in_queue()
+                print(f"RESP: {getRequest.status_code} -> {getRequest.text}")
                 if getRequest.status_code == 200:
                     json_data = getRequest.json()
+                    print(f"GOT JSON: {json_data}")
                     speech_text = json_data.get("local_file", "")
                     print(f"GOT SPEECH TEXT: {speech_text}")
                     # is_local_file = "fuckloc:" in speech_text
