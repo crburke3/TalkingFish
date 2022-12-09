@@ -58,7 +58,7 @@ def jingle_bells_chill():
 
                         "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
                         "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
-                        "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
+                        # "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
                         ]
     command.local_song_url = f"{base_path}/../_resources/jingle_bells_chill.wav"
     return command
