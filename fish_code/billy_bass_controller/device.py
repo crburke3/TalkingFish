@@ -41,7 +41,7 @@ class Device:
             self.mc = RPIMotorController()
             print("Motor Controller Device Identified: Raspberry PI")
             self.device_type = DeviceType.raspberry_pi
-            self._setup_rpi_button()
+            # self._setup_rpi_button()
             return
         except:
             pass

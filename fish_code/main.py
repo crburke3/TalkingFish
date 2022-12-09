@@ -32,7 +32,9 @@ if __name__ == '__main__':
         button_counter = len(offline_performances) - 1
         last_press = None
         while True:
-            if (device.button_1_pressed() or last_press == None):
+            # button_pressed = device.button_1_pressed()
+            button_pressed = False
+            if (button_pressed or last_press == None):
                 last_press = datetime.now()
                 if button_counter < 0:
                     button_counter = len(offline_performances) - 1
