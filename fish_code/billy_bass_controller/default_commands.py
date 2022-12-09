@@ -71,11 +71,11 @@ def down_with_the_sickness():
                         "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
                         "SYNC:@6.5",
                         "UPPER_ON:0.0s", "O:0.25s", "C:0.1s", "O:0.65s", "C:0.1s", "UPPER_OFF:0.5s",   # O WAH AH AH AH
-                        "SYNC:@9.0",
+                        "SYNC:@9.5",
                         "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
-                        "SYNC:@11.5",
+                        "SYNC:@12.0",
                         "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
-                        "SYNC:@14.0",
+                        "SYNC:@14.5",
                         "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
     ]
     command.local_song_url = f"{base_path}/../_resources/down_with_the_sickness.wav"
