@@ -111,10 +111,10 @@ def look_at_me_now():
         "UPPER_OFF:0.0s",
         "LOWER_ON:0.0s"
     ] + crazy_section_4 + [
-        "SYNC:@17.5",
         "LOWER_OFF:0.0s",
+        "SYNC:@17.0",
         "UPPER_ON:0.0s",
-        "O:0.0s"
+        "O:1.0s"
     ]
     command.local_song_url = f"{base_path}/../_resources/look_at_me_now.wav"
     return command
