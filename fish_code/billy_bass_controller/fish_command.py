@@ -36,4 +36,6 @@ class FishCommand:
         for cmd in self.commands:
             movement, duration = _parse_movement_and_duration(cmd)
             total_cmd_duration += duration
+        if total_cmd_duration == 0:
+            return 1
         return total_cmd_duration
