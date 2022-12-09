@@ -107,6 +107,8 @@ class FishController:
                 self._handle_sync(start_time, sync_time)
             elif movement in [MOUTH_OPEN_CLOSE]:
                 self._handle_mouth_open_close(cmd)
+            elif movement in [TOGGLE_BODY]:
+                self._handle_toggle_body(cmd)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
             movement_time = datetime.now().timestamp() - movement_start_time
@@ -158,10 +160,12 @@ class FishController:
             self.mc.turn_off_lower_body()
             time.sleep(0.05)
             self.mc.turn_on_upper_body()
+            time.sleep(0.05)
         if self.mc.upper_body_on:
             self.mc.turn_off_upper_body()
             time.sleep(0.05)
             self.mc.turn_on_lower_body()
+            time.sleep(0.05)
 
     def _handle_lower_body_movement(self, command: str, pre_scalar):
         print("Executing command: ", command)
