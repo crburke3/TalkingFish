@@ -3,13 +3,13 @@ import json, string
 from structs import server_globals, command_handler
 
 
-
 def post_to_queue(request):
 
     print("parameters passed: ", request)
     request_json = request.get_json()
     print("Json body: ", request_json)
-    text = request.get_json()[0]['message']['text']
+    # text = request.get_json()[0]['message']['text']
+    text = request.get_json()['Body']
     print(f"recieved text: {text}")
     device_ids = server_globals.parse_fish_id_from_text(text)
     print(f"chose devices by ID: {device_ids}")
