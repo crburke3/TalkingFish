@@ -11,6 +11,11 @@ from datetime import datetime
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
+    while True:
+        button_pressed = device.button_1_pressed()
+        print(f"PRESSED: {button_pressed}")
+        time.sleep(0.1)
+
     device.fc.perform(default_cmds.mac_boot())
     internet_attempts = 2
     internet_connected = False
