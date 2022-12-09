@@ -15,3 +15,10 @@ def mac_boot():
     command.commands = ["O:0", "UPPER_ON:1"]
     command.local_song_url = f"{base_path}/../_resources/mac_startup_sound.wav"
     return command
+
+def merry_christmas():
+    command = FishCommand()
+    command.commands = ["UPPER_ON:0", "O:1", "C:1",  "O:1", "C:1", "O:1", "C:1", "O:1", "C:1",
+                        "UPPER_OFF:0",  "O:3", "C:1", "O:3", "C:1", "O:3", "C:1"]
+    command.local_song_url = f"{base_path}/../_resources/merry_christmas.wav.wav"
+    return command
