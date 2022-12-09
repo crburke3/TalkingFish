@@ -17,6 +17,7 @@ UPPER_BODY_OFF_CMD = "UPPER_OFF"
 LOWER_BODY_ON_CMD = "LOWER_ON"
 LOWER_BODY_OFF_CMD = "LOWER_OFF"
 MOUTH_OPEN_CLOSE = "OC"
+TOGGLE_BODY = "TB"
 SYNC = "SYNC"
 
 audio_driver = AudioDriver()
@@ -149,6 +150,18 @@ class FishController:
         time.sleep(half_dir)
         self.mc.turn_off_mouth()
         time.sleep(half_dir)
+
+    def _handle_toggle_body(self, command: str):
+        print("Executing command: ", command)
+        movement, _, _ = _parse_movement_and_duration(command)
+        if self.mc.lower_body_on:
+            self.mc.turn_off_lower_body()
+            time.sleep(0.05)
+            self.mc.turn_on_upper_body()
+        if self.mc.upper_body_on:
+            self.mc.turn_off_upper_body()
+            time.sleep(0.05)
+            self.mc.turn_on_lower_body()
 
     def _handle_lower_body_movement(self, command: str, pre_scalar):
         print("Executing command: ", command)
