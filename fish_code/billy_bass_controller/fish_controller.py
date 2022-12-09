@@ -68,8 +68,9 @@ class FishController:
         # p2.start()
         # p1.join()
         # p2.join()
+        prescaler = self.current_task.get_expected_prescaler()
         self._play_song()
-        self._move_to_commands()
+        self._move_to_commands(prescaler)
         print("threads finished!")
         self.reset()
 
@@ -78,7 +79,7 @@ class FishController:
         self.mc.turn_off_upper_body()
         self.mc.turn_off_lower_body()
 
-    def _move_to_commands(self, only_testing_cmds=None):
+    def _move_to_commands(self, prescalar, only_testing_cmds=None):
         start_time = datetime.now().timestamp()
         movements = None
         if self.current_task:
@@ -91,13 +92,13 @@ class FishController:
             movement_start_time = datetime.now().timestamp()
             movement, duration = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
-                self._handle_mouth_movement(cmd)
+                self._handle_mouth_movement(cmd, prescalar)
                 if duration == 1:
                     self._toggle_body()
             elif movement in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
-                self._handle_upper_body_movement(cmd)
+                self._handle_upper_body_movement(cmd, prescalar)
             elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
-                self._handle_lower_body_movement(cmd)
+                self._handle_lower_body_movement(cmd, prescalar)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
             movement_time = datetime.now().timestamp() - movement_start_time
@@ -115,40 +116,39 @@ class FishController:
         print("playgin song...", flush=True)
         self.ad.play_file(self.current_task.local_song_url)
 
-    def _handle_mouth_movement(self, command: str):
+    def _handle_mouth_movement(self, command: str, prescalar):
         print("Executing command: ", command)
         movement, duration = _parse_movement_and_duration(command)
         if movement == MOUTH_CLOSED_CMD:
             self.mc.turn_off_mouth()
         if movement == MOUTH_OPEN_CMD:
             self.mc.turn_on_mouth()
-        self._sleep_for_units(duration)
+        self._sleep_for_units(duration, prescalar)
 
-    def _handle_upper_body_movement(self, command: str):
+    def _handle_upper_body_movement(self, command: str, prescalar):
         print("Executing command: ", command)
         movement, duration = _parse_movement_and_duration(command)
         if movement == UPPER_BODY_ON_CMD:
             self.mc.turn_on_upper_body()
         if movement == UPPER_BODY_OFF_CMD:
             self.mc.turn_off_upper_body()
-        self._sleep_for_units(duration)
+        self._sleep_for_units(duration, prescalar)
 
-    def _handle_lower_body_movement(self, command: str):
+    def _handle_lower_body_movement(self, command: str, pre_scalar):
         print("Executing command: ", command)
         movement, duration = _parse_movement_and_duration(command)
         if movement == LOWER_BODY_ON_CMD:
             self.mc.turn_on_lower_body()
         if movement == LOWER_BODY_OFF_CMD:
             self.mc.turn_off_lower_body()
-        self._sleep_for_units(duration)
+        self._sleep_for_units(duration, pre_scalar)
 
-    def _sleep_for_units(self, units):
+    def _sleep_for_units(self, units, prescaler):
         sleep_start = datetime.now().timestamp()
         if not self.current_task:
             print("No current_task, sleeping 0.2")
             time.sleep(0.2)
             return
-        prescaler = self.current_task.get_expected_prescaler()
         sleep_time = units * prescaler
         print("sleeping for (s): ", sleep_time)
         time.sleep(sleep_time)
