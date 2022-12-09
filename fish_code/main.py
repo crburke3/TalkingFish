@@ -11,7 +11,8 @@ from datetime import datetime
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    device.fc.perform(default_cmds.jingle_bells_chill())
+    device.fc.perform(default_cmds.mac_boot())
+    # device.fc.perform(default_cmds.jingle_bells_chill())
     internet_attempts = 3
     internet_connected = False
     internet_connection_performance = default_cmds.peter_griffin_giggle()
@@ -34,7 +35,7 @@ if __name__ == '__main__':
         while True:
             # button_pressed = device.button_1_pressed()
             button_pressed = False
-            if (button_pressed or last_press == None):
+            if button_pressed or last_press == None:
                 last_press = datetime.now()
                 if button_counter < 0:
                     button_counter = len(offline_performances) - 1
