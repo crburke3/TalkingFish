@@ -67,7 +67,7 @@ class Device:
         print("setting up raspberry pi button on pin")
         import RPi.GPIO as GPIO
         GPIO.setwarnings(False)  # Ignore warning for now
-        GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
+        # GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
         GPIO.setup(RPI_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Set pin 10 to be an input pin and set
 
     def get_unique_id(self) -> str:
