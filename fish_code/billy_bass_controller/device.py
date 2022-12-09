@@ -7,7 +7,7 @@ import requests
 import os
 from enum import Enum
 
-RPI_BUTTON_PIN = 21
+RPI_BUTTON_PIN = 40
 
 
 class DeviceType(Enum):
