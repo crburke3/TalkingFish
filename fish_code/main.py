@@ -11,8 +11,7 @@ if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
     if not device.internet_on():
-
-        device.fc.perform(command)
+        device.fc.perform(default_cmds.connecting())
     else:
         device.fish_api.post_fish_formation(starting_fish_info)
         device.fish_api.post_fish_command(f"{get_device_id()} I am ALIVE")
