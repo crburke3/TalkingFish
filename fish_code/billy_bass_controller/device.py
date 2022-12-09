@@ -3,6 +3,7 @@ from .fish_controller import FishController
 from .audio_driver import AudioDriver
 from .fish_api import FishAPI
 from uuid import getnode
+import requests
 import os
 
 
@@ -53,3 +54,10 @@ class Device:
     def get_unique_id(self) -> str:
         mac_raw = getnode()
         return ':'.join(("%012X" % mac_raw)[i:i+2] for i in range(0, 12, 2))
+
+    def internet_on(self) -> bool:
+        try:
+            requests.get('https://google.com', timeout=1)
+            return True
+        except Exception as err:
+            return False

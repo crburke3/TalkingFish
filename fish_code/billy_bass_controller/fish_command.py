@@ -33,5 +33,3 @@ class FishCommand:
             movement, duration = _parse_movement_and_duration(cmd)
             total_cmd_duration += duration
         return total_cmd_duration
-
-

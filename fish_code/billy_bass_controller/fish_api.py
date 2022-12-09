@@ -51,7 +51,7 @@ class FishAPI:
     def post_fish_command(self, fish_text: str):
         print(f"posting fish command: {fish_text}")
         url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/post_to_queue"
-        fish_speech = [{"message": { "text": fish_text}}]
+        fish_speech = [{"message": {"Body": fish_text}}]
         resp = requests.post(url, json=fish_speech)
         print(resp.text)
         return resp
