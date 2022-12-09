@@ -16,6 +16,7 @@ UPPER_BODY_ON_CMD = "UPPER_ON"
 UPPER_BODY_OFF_CMD = "UPPER_OFF"
 LOWER_BODY_ON_CMD = "LOWER_ON"
 LOWER_BODY_OFF_CMD = "LOWER_OFF"
+SYNC = "SYNC"
 
 audio_driver = AudioDriver()
 
@@ -49,9 +50,9 @@ class FishController:
         self.perform(command)
 
     def perform(self, database_object: FishCommand):
-        print("Expected movement duration (units): ", database_object.command_unit_length())
-        print("Unit Duration (s): ", database_object.get_expected_prescaler())
-        print("Expected movement duration (s): ", database_object.command_unit_length() * database_object.get_expected_prescaler())
+        # print("Expected movement duration (units): ", database_object.command_unit_length())
+        # print("Unit Duration (s): ", database_object.get_expected_prescaler())
+        # print("Expected movement duration (s): ", database_object.command_unit_length() * database_object.get_expected_prescaler())
         print("Expected song duration (s): ", audio_driver.get_audio_length_seconds(database_object.local_song_url))
         print("")
         print("performing!")
@@ -80,17 +81,17 @@ class FishController:
         self.mc.turn_off_lower_body()
 
     def _move_to_commands(self, prescalar, only_testing_cmds=None):
-        start_time = datetime.now().timestamp()
         movements = None
         if self.current_task:
             time.sleep(self.current_task.audio_start_offset)
             movements = self.current_task.commands
         else:
             movements = only_testing_cmds
+        start_time = datetime.now().timestamp()
         print("moving to commands: ", movements)
         for cmd in movements:
             movement_start_time = datetime.now().timestamp()
-            movement, duration = _parse_movement_and_duration(cmd)
+            movement, _, _ = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
                 self._handle_mouth_movement(cmd, prescalar)
                 # if duration == 1:
@@ -99,6 +100,9 @@ class FishController:
                 self._handle_upper_body_movement(cmd, prescalar)
             elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
                 self._handle_lower_body_movement(cmd, prescalar)
+            elif movement in [SYNC]:
+                _, sync_time, use_ms = _parse_movement_and_duration(cmd)
+                self._handle_sync(start_time, sync_time)
             else:
                 print("Cannot move to cmd: ", cmd, flush=True)
             movement_time = datetime.now().timestamp() - movement_start_time
@@ -118,32 +122,44 @@ class FishController:
 
     def _handle_mouth_movement(self, command: str, prescalar):
         print("Executing command: ", command)
-        movement, duration = _parse_movement_and_duration(command)
+        movement, duration, use_ms = _parse_movement_and_duration(command)
         if movement == MOUTH_CLOSED_CMD:
             self.mc.turn_off_mouth()
         if movement == MOUTH_OPEN_CMD:
             self.mc.turn_on_mouth()
-        self._sleep_for_units(duration, prescalar)
+        self._sleep_for_units(duration, prescalar, use_ms)
 
     def _handle_upper_body_movement(self, command: str, prescalar):
         print("Executing command: ", command)
-        movement, duration = _parse_movement_and_duration(command)
+        movement, duration, use_ms = _parse_movement_and_duration(command)
         if movement == UPPER_BODY_ON_CMD:
             self.mc.turn_on_upper_body()
         if movement == UPPER_BODY_OFF_CMD:
             self.mc.turn_off_upper_body()
-        self._sleep_for_units(duration, prescalar)
+        self._sleep_for_units(duration, prescalar, use_ms)
 
     def _handle_lower_body_movement(self, command: str, pre_scalar):
         print("Executing command: ", command)
-        movement, duration = _parse_movement_and_duration(command)
+        movement, duration, use_ms = _parse_movement_and_duration(command)
         if movement == LOWER_BODY_ON_CMD:
             self.mc.turn_on_lower_body()
         if movement == LOWER_BODY_OFF_CMD:
             self.mc.turn_off_lower_body()
-        self._sleep_for_units(duration, pre_scalar)
+        self._sleep_for_units(duration, pre_scalar, use_ms)
 
-    def _sleep_for_units(self, units, prescaler):
+    def _handle_sync(self, start_time: float, secs_to_stop_sync: float, wait_offset: float = 0.0):
+        curr_time = datetime.now().timestamp()
+        curr_song_time = curr_time - start_time
+        time_until_sync = curr_song_time - secs_to_stop_sync
+        time_until_sync += wait_offset
+        print(f"Waiting {time_until_sync} to sync up...")
+        time.sleep(time_until_sync)
+
+    def _sleep_for_units(self, units, prescaler, use_ms):
+        if use_ms:
+            sleep_time = units / 1000
+            print(f"sleeping for {sleep_time} ms")
+            time.sleep(sleep_time)
         if not self.current_task:
             time.sleep(0.2)
             return

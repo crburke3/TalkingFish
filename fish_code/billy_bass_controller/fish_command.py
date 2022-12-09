@@ -38,8 +38,13 @@ class FishCommand:
     def command_unit_length(self) -> int:
         total_cmd_duration = 0
         for cmd in self.commands:
-            movement, duration = _parse_movement_and_duration(cmd)
-            total_cmd_duration += duration
+            try:
+                movement, duration, use_ms = _parse_movement_and_duration(cmd)
+                if isinstance(duration, float) or use_ms:
+                    continue
+                total_cmd_duration += duration
+            except Exception as e:
+                pass
         if total_cmd_duration == 0:
             return 1
         return total_cmd_duration

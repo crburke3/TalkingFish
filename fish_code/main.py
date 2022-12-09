@@ -11,7 +11,7 @@ from datetime import datetime
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    device.fc.perform(default_cmds.mac_boot())
+    device.fc.perform(default_cmds.down_with_the_sickness())
     # device.fc.perform(default_cmds.jingle_bells_chill())
     internet_attempts = 2
     internet_connected = False

@@ -10,9 +10,19 @@ def _parse_movement_and_duration(command):
     if len(command) == 2:
         command = f"{command[0]}:{command[1]}"
     try:
+        use_ms = False
         movement = command.split(":")[0]
-        duration = int(command.split(":")[1])
-        return movement, duration
+        duration_raw = command.split(":")[1]
+        if "@" in duration_raw:
+            duration_raw = duration_raw.replace("@", "")
+            duration = float(duration_raw)
+        else:
+            if "s" in duration_raw:
+                duration_raw = duration_raw.replace("s", "")
+                duration = float(duration_raw)
+            else:
+                duration = int(duration_raw)
+        return movement, duration, use_ms
     except Exception as e:
         print("Failed to parse command: ", command)
         raise e
