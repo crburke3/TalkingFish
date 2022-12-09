@@ -69,9 +69,9 @@ if __name__ == '__main__':
                 if getRequest.status_code == 200:
                     json_data = getRequest.json()
                     speech_text = json_data.get("speech_text", "")
-                    is_local_file = "local:" in speech_text
+                    is_local_file = "loc:" in speech_text
                     if is_local_file:
-                        local_file_name = speech_text.replace("local:", "")
+                        local_file_name = speech_text.replace("loc:", "")
                         print(f"GETTING LOCAL FILE FOR NAME: {local_file_name}")
                         local_file_name = local_file_name.lower()
                         performance_for_name = default_cmds.for_name(local_file_name)
