@@ -5,6 +5,14 @@ from .fish_api import FishAPI
 from uuid import getnode
 import requests
 import os
+from enum import Enum
+
+RPI_BUTTON_PIN = 21
+
+
+class DeviceType(Enum):
+    raspberry_pi = "raspberry_pi"
+    computer = "computer"
 
 
 class Device:
@@ -14,7 +22,8 @@ class Device:
         self.ad: AudioDriver
         self.fc: FishController
         self.fish_api: FishAPI
-        self._initalize_motor_controller()
+        self.device_type = None
+        self._initalize_motor_controller()  # finds device type
         self._initalize_audio_driver()
         self._initalize_fish_controller()
         self._initalize_fish_api()
@@ -31,6 +40,8 @@ class Device:
             from .ports.raspberry_pi.raspberry_pi_motor_controller import RPIMotorController
             self.mc = RPIMotorController()
             print("Motor Controller Device Identified: Raspberry PI")
+            self.device_type = DeviceType.raspberry_pi
+            self._setup_rpi_button()
             return
         except:
             pass
@@ -38,6 +49,7 @@ class Device:
             from .ports.mac.mac_motor_controller import FakeMotorController
             self.mc = FakeMotorController()
             print("Motor Controller Device Identified: Local Computer")
+            self.device_type = DeviceType.computer
             return
         except:
             raise Exception("Motor Controller Device Not Recognized!")
@@ -51,6 +63,13 @@ class Device:
     def _initalize_fish_api(self):
         self.fish_api = FishAPI()
 
+    def _setup_rpi_button(self):
+        print("setting up raspberry pi button on pin")
+        import RPi.GPIO as GPIO
+        GPIO.setwarnings(False)  # Ignore warning for now
+        GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
+        GPIO.setup(RPI_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Set pin 10 to be an input pin and set
+
     def get_unique_id(self) -> str:
         mac_raw = getnode()
         return ':'.join(("%012X" % mac_raw)[i:i+2] for i in range(0, 12, 2))
@@ -61,3 +80,10 @@ class Device:
             return True
         except Exception as err:
             return False
+
+    def button_1_pressed(self) -> bool:
+        if self.device_type == DeviceType.computer:
+            return False
+        elif self.device_type == DeviceType.raspberry_pi:
+            import RPi.GPIO as GPIO
+            return GPIO.input(RPI_BUTTON_PIN) == GPIO.HIGH

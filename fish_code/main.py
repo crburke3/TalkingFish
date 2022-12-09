@@ -6,6 +6,7 @@ from billy_bass_controller import Device, FishCommand
 from billy_bass_controller.globals import get_device_id
 from billy_bass_controller.fish_information import FishInformation
 import billy_bass_controller.default_commands as default_cmds
+from datetime import datetime
 
 if __name__ == '__main__':
     device = Device()
@@ -22,8 +23,26 @@ if __name__ == '__main__':
 
     if not internet_connected:
         print("NOT CONNECTED TO INTERNET")
-        # device.fc.perform(default_cmds.wazzup_scary_movie())
-        device.fc.perform(default_cmds.merry_christmas())
+        device.fc.perform(default_cmds.minecraft_oof())
+        offline_performances = [
+            default_cmds.merry_christmas(),
+
+        ]
+        button_counter = len(offline_performances) - 1
+        last_press = None
+        while True:
+            if (device.button_1_pressed() or last_press == None):
+                last_press = datetime.now()
+                if button_counter < 0:
+                    button_counter = len(offline_performances) - 1
+                performance_for_press = offline_performances[button_counter]
+                device.fc.perform(performance_for_press)
+                button_counter -= 1
+            time.sleep(1)
+            secs_since_last_press = (datetime.now() - last_press).total_seconds()
+            print(f"It has been {round(secs_since_last_press)}s since you last pressed the button")
+            if secs_since_last_press >= 60:
+                last_press = None
     else:
         device.fc.perform(default_cmds.wazzup_scary_movie())
         device.fish_api.post_fish_formation(starting_fish_info)
