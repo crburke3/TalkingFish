@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
-PIN = 26
+PIN = int(input("PIN: "))
 
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
