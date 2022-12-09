@@ -15,24 +15,11 @@ def test_bubbles_object_get_success_200():
 def test_bubbles_object_get_success_with_specific_mac():
     # post fish data to speak
     mac = "computer"
-    fake_post = TestClass([
-        {'time': '2021-11-16T16:35:57.159Z',
-         'type': 'message-received',
-         'to': '+19843586100',
-         'description': 'Incoming message received',
-         'message': {
-             'id': '891b9238-c8b7-43e3-b681-56e74c482d57',
-             'owner': '+19843586100',
-             'applicationId': 'f50bebeb-57a7-4dda-bbb4-3567292acbff',
-             'time': '2021-11-16T16:35:57.062Z',
-             'segmentCount': 1,
-             'direction': 'in',
-             'to': ['+19843586100'],
-             'from': '+17036095909',
-             'text': f'{mac} Hello World I am a talking fish'
+    fake_post = TestClass(
+        {
+             'Body': f'{mac} Hello World I am a talking fish'
          }
-         }
-    ])
+    )
     fake_post.path = "post_to_queue"
     fake_post.method = "POST"
     post_resp = main.hello_world(fake_post)
@@ -45,5 +32,6 @@ def test_bubbles_object_get_success_with_specific_mac():
     resp = main.hello_world(fake_get)
     print(resp)
     assert resp[1] == 200
+    print(resp.text)
 
 

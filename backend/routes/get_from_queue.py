@@ -19,6 +19,7 @@ def get_from_queue(request):
     if 'audio_url' in bubbles:
         audio_url = bubbles['audio_url']
     if "local_file" in bubbles:
+        server_globals.fish_firestore.delete_request_from_queue(bubbles['queue_count'], device_id)
         return json.dumps(bubbles), 200
 
     server_globals.fish_firestore.delete_request_from_queue(bubbles['queue_count'], device_id)
