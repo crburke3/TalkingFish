@@ -11,11 +11,12 @@ from datetime import datetime
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    device.fc.perform(default_cmds.mac_boot())
+    device.fc.perform(default_cmds.jingle_bells_chill())
     internet_attempts = 3
     internet_connected = False
+    internet_connection_performance = default_cmds.peter_griffin_giggle()
     while not internet_connected and internet_attempts > 0:
-        device.fc.perform(default_cmds.peter_griffin_giggle())
+        device.fc.perform(internet_connection_performance)
         # internet_connected = device.internet_on()
         internet_connected = False
         internet_attempts -= 1
@@ -26,7 +27,7 @@ if __name__ == '__main__':
         device.fc.perform(default_cmds.minecraft_oof())
         offline_performances = [
             default_cmds.merry_christmas(),
-
+            default_cmds.jingle_bells_chill(),
         ]
         button_counter = len(offline_performances) - 1
         last_press = None

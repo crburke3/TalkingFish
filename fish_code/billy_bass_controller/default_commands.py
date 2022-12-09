@@ -46,3 +46,18 @@ def minecraft_oof():
     command.commands = ["LOWER_ON:0", "O:1"]
     command.local_song_url = f"{base_path}/../_resources/minecraft_oof.wav"
     return command
+
+
+def jingle_bells_chill():
+    command = FishCommand()
+    command.commands = ["O:0", "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1",
+                        "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1"
+                        "UPPER_ON:1", "UPPER_OFF:1", "UPPER_ON:1", "UPPER_OFF:1",
+                        "UPPER_ON:1", "UPPER_OFF:1", "UPPER_ON:1", "UPPER_OFF:1",
+
+                        "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
+                        "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
+                        "LOWER_ON:1", "LOWER_OFF:0", "UPPER_ON:1", "UPPER_OFF:0",
+                        ]
+    command.local_song_url = f"{base_path}/../_resources/jingle_bells_chill.wav"
+    return command
