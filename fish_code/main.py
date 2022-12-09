@@ -12,10 +12,11 @@ if __name__ == '__main__':
     starting_fish_info = FishInformation(device_id=get_device_id())
     # internet_connected = device.internet_on()
     internet_connected = False
+    device.fc.perform(default_cmds.mac_boot())
     if not internet_connected:
         print("NOT CONNECTED TO INTERNET")
-        # device.fc.perform(default_cmds.mac_boot())
-        device.fc.perform(default_cmds.merry_christmas())
+        device.fc.perform(default_cmds.wazzup_scary_movie())
+        # device.fc.perform(default_cmds.merry_christmas())
     else:
         device.fish_api.post_fish_formation(starting_fish_info)
         device.fish_api.post_fish_command(f"{get_device_id()} I am ALIVE")
