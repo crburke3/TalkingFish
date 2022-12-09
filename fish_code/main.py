@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 getRequest = device.fish_api.get_next_item_in_queue()
                 if getRequest.status_code == 200:
                     json_data = getRequest.json()
-                    speech_text = json_data.get("speech_text", "")
+                    speech_text = json_data.get("local_file", "")
                     print(f"GOT SPEECH TEXT: {speech_text}")
                     is_local_file = "fuckloc:" in speech_text
                     if is_local_file:
