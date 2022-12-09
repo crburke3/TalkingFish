@@ -22,8 +22,8 @@ if __name__ == '__main__':
     internet_connection_performance = default_cmds.peter_griffin_giggle()
     while not internet_connected and internet_attempts > 0:
         device.fc.perform(internet_connection_performance)
-        # internet_connected = device.internet_on()
-        internet_connected = False
+        internet_connected = device.internet_on()
+        # internet_connected = False
         internet_attempts -= 1
         time.sleep(1)
 
@@ -56,35 +56,42 @@ if __name__ == '__main__':
             secs_since_last_press = (datetime.now() - last_press).total_seconds()
             print(f"It has been {round(secs_since_last_press)}s since you last pressed the button")
             if not button_ever_pressed:
-                if secs_since_last_press >= 5 * 60:
+                if secs_since_last_press >= 1 * 60:
                     last_press = None
     else:
         device.fc.perform(default_cmds.wazzup_scary_movie())
         device.fish_api.post_fish_formation(starting_fish_info)
         device.fish_api.post_fish_command(f"{get_device_id()} I am ALIVE")
-        device.fc.boot_perforance()
         while True:
             print(f"listening for new messages in collection: {get_device_id()}...")
             try:
                 getRequest = device.fish_api.get_next_item_in_queue()
                 if getRequest.status_code == 200:
                     json_data = getRequest.json()
-                    command = FishCommand()
-                    commands_str = json_data['commands']
-                    commands_str = commands_str.strip('[')
-                    commands_str = commands_str.strip(']')
-                    commands_str = commands_str.replace('\'', '')
-                    commands_str = commands_str.replace(' ', '')
-                    commands = commands_str.split(',')
-                    command.commands = commands
-                    command.song_url = json_data['audio_url']
-                    device.fish_api.download_song_for_object(command)
+                    local_file_name = json_data.get("local_file", None)
+                    if local_file_name:
+                        print(f"GETTING LOCAL FILE FOR NAME: {local_file_name}")
+                        local_file_name = local_file_name.lower()
+                        performance_for_name = default_cmds.for_name(local_file_name)
+                        if not performance_for_name:
+                            device.fc.perform(default_cmds.minecraft_oof())
+                    else:
+                        command = FishCommand()
+                        commands_str = json_data['commands']
+                        commands_str = commands_str.strip('[')
+                        commands_str = commands_str.strip(']')
+                        commands_str = commands_str.replace('\'', '')
+                        commands_str = commands_str.replace(' ', '')
+                        commands = commands_str.split(',')
+                        command.commands = commands
+                        command.song_url = json_data['audio_url']
+                        device.fish_api.download_song_for_object(command)
 
-                    command._expected_prescaler = command.get_expected_prescaler()
-                    command.audio_start_offset = 0.0
-                    device.fc.perform(command)
-                    time.sleep(1)
-                    device.fc.reset()
+                        command._expected_prescaler = command.get_expected_prescaler()
+                        command.audio_start_offset = 0.0
+                        device.fc.perform(command)
+                        time.sleep(1)
+                        device.fc.reset()
                 else:
                    time.sleep(2)
             except Exception as e:

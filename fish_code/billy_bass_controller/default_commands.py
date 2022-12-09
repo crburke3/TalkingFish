@@ -114,3 +114,17 @@ def look_at_me_now():
     ]
     command.local_song_url = f"{base_path}/../_resources/look_at_me_now.wav"
     return command
+
+
+def for_name(file_name: str) -> FishCommand:
+    file_dict = {
+        "mac": mac_boot(),
+        "merry christmas": merry_christmas(),
+        "wazzup": wazzup_scary_movie(),
+        "peter": peter_griffin_giggle(),
+        "jingle": jingle_bells_chill(),
+        "sickness": down_with_the_sickness(),
+        "look at me": look_at_me_now()
+    }
+    return file_dict.get(file_name, None)
+
