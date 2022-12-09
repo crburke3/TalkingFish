@@ -103,7 +103,7 @@ def look_at_me_now():
         "LOWER_ON:0.0s"
     ] + crazy_section_2 + [
         "SYNC:@12.8",
-        "LOWER_OFF:0.0s"
+        "LOWER_OFF:0.0s",
         "UPPER_ON:0.0s",
     ] + crazy_section_3 + [
         "UPPER_OFF:0.0s",
