@@ -50,8 +50,9 @@ def minecraft_oof():
 
 def jingle_bells_chill():
     command = FishCommand()
-    command.commands = ["O:0", "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1",
-                        "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1"
+    command.commands = ["O:0",
+                        "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1",
+                        "LOWER_ON:1", "LOWER_OFF:1", "LOWER_ON:1", "LOWER_OFF:1",
                         "UPPER_ON:1", "UPPER_OFF:1", "UPPER_ON:1", "UPPER_OFF:1",
                         "UPPER_ON:1", "UPPER_OFF:1", "UPPER_ON:1", "UPPER_OFF:1",
 
