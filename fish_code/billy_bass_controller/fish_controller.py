@@ -154,7 +154,7 @@ class FishController:
         time_until_sync += wait_offset
         if time_until_sync <= 0:
             time_until_sync = 0
-        print(f"Waiting {time_until_sync} to sync up...")
+        print(f"Waiting {time_until_sync} to sync up... --------------------")
         time.sleep(time_until_sync)
 
     def _sleep_for_units(self, units, prescaler, use_ms):

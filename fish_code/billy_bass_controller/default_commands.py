@@ -70,16 +70,13 @@ def down_with_the_sickness():
                         "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
                         "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
                         "SYNC:@6.5",
-                        "UPPER_ON:0.0s",
-                        "O:0.25s", "C:0.1s", "O:0.65s", "C:0",   # O WAH AH AH AH
-                        "UPPER_OFF:0.5s",
-                        "LOWER_ON:0.75s", "LOWER_OFF:0.75s", "LOWER_ON:0.75s", "LOWER_OFF:0.75s",
+                        "UPPER_ON:0.0s", "O:0.25s", "C:0.1s", "O:0.65s", "C:0.1s", "UPPER_OFF:0.5s",   # O WAH AH AH AH
                         "SYNC:@10.0",
-                        "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:1", "UPPER_OFF:0.5s",  # UH UH
+                        "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
                         "SYNC:@12.5",
-                        "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:1", "UPPER_OFF:0.5s",  # UH UH
+                        "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
                         "SYNC:@15.0",
-                        "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:1", "UPPER_OFF:0.5s",  # UH UH
+                        "UPPER_ON:0.0s", "O:0.2s", "C:0.1s", "O:0.2s", "C:0.1s", "UPPER_OFF:0.5s",  # UH UH
     ]
     command.local_song_url = f"{base_path}/../_resources/down_with_the_sickness.wav"
     return command
