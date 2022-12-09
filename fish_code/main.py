@@ -14,7 +14,7 @@ if __name__ == '__main__':
     internet_connected = False
     if not internet_connected:
         print("NOT CONNECTED TO INTERNET")
-        device.fc.perform(default_cmds.connecting())
+        device.fc.perform(default_cmds.mac_boot())
     else:
         device.fish_api.post_fish_formation(starting_fish_info)
         device.fish_api.post_fish_command(f"{get_device_id()} I am ALIVE")

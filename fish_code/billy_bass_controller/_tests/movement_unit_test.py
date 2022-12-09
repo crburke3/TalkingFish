@@ -20,3 +20,7 @@ def test_failure_2():
         movements = ["UPPER_ON:5", "LOWER_ON:5"]
         device.fc._move_to_commands(movements)
 
+def test_merry_christmas():
+    device = Device()
+    movements = ["UPPER_ON:5"]
+    device.fc._move_to_commands(movements)
