@@ -95,6 +95,7 @@ def look_at_me_now():
     crazy_section_2 = ["OC:0.2s"] * 10
     crazy_section_3 = ["OC:0.2s"] * 10
     crazy_section_4 = ["OC:0.2s"] * 10
+    crazy_section_5 = ["OC:0.2s"] * 2
     command.commands = [
         "SYNC:@4.0",
         "UPPER_ON:0.4s",
@@ -112,7 +113,7 @@ def look_at_me_now():
     ] + crazy_section_4 + [
         "LOWER_OFF:0.0s",
         "UPPER_ON:0.0s",
-    ] + crazy_section_3 + [
+    ] + crazy_section_5 + [
         "UPPER_OFF:0.0s",
         "LOWER_ON:0.0s",
         "SYNC:@17.5",
