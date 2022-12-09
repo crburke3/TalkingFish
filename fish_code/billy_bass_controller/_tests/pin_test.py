@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+import time
 PIN = int(input("PIN: "))
 
 GPIO.setwarnings(False) # Ignore warning for now
@@ -10,3 +11,5 @@ while True: # Run forever
         print("Button was pushed!")
     else:
         print("NOT PRESSED")
+    time.sleep(0.1)
+
