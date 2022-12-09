@@ -93,8 +93,8 @@ class FishController:
             movement, duration = _parse_movement_and_duration(cmd)
             if movement in [MOUTH_OPEN_CMD, MOUTH_CLOSED_CMD]:
                 self._handle_mouth_movement(cmd, prescalar)
-                if duration == 1:
-                    self._toggle_body()
+                # if duration == 1:
+                #     self._toggle_body()
             elif movement in [UPPER_BODY_ON_CMD, UPPER_BODY_OFF_CMD]:
                 self._handle_upper_body_movement(cmd, prescalar)
             elif movement in [LOWER_BODY_ON_CMD, LOWER_BODY_OFF_CMD]:
@@ -144,16 +144,11 @@ class FishController:
         self._sleep_for_units(duration, pre_scalar)
 
     def _sleep_for_units(self, units, prescaler):
-        sleep_start = datetime.now().timestamp()
         if not self.current_task:
-            print("No current_task, sleeping 0.2")
             time.sleep(0.2)
             return
         sleep_time = units * prescaler
-        print("sleeping for (s): ", sleep_time)
         time.sleep(sleep_time)
-        sleep_time = datetime.now().timestamp() - sleep_start
-        print(f"it took {sleep_time}s to sleep")
 
     def _toggle_body(self):
         if self.mc.upper_body_on:
