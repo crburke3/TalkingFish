@@ -10,7 +10,10 @@ import billy_bass_controller.default_commands as default_cmds
 if __name__ == '__main__':
     device = Device()
     starting_fish_info = FishInformation(device_id=get_device_id())
-    if not device.internet_on():
+    # internet_connected = device.internet_on()
+    internet_connected = False
+    if not internet_connected:
+        print("NOT CONNECTED TO INTERNET")
         device.fc.perform(default_cmds.connecting())
     else:
         device.fish_api.post_fish_formation(starting_fish_info)

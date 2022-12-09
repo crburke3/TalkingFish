@@ -60,9 +60,10 @@ class FishFirestore:
         print(f"successfully upload fish data: {fish_info}")
 
     def get_name_to_device_id_dict(self) -> dict:
-        config = self.db.collection("globals").document("server_config").get().to_dict()
-        server_name_to_device_id = config.get("name_to_device_id", server_globals.NAME_TO_DEVICE_ID_DEFAULT)
-        return server_name_to_device_id
+        # config = self.db.collection("globals").document("server_config").get().to_dict()
+        # server_name_to_device_id = config.get("name_to_device_id", server_globals.NAME_TO_DEVICE_ID_DEFAULT)
+
+        return server_globals.NAME_TO_DEVICE_ID_DEFAULT
 
     def get_fish_information(self, device_id: str) -> FishInformation:
         try:

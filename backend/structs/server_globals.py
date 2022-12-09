@@ -21,6 +21,7 @@ NAME_TO_DEVICE_ID_DEFAULT = {
     "memae": "b8:27:eb:12:ea:dc",
     "grandma": "b8:27:eb:d6:63:07",
     "DEFAULT_DEVICE_ID": "fish_1",
+    "christian": "b8:27:eb:0a:0a:0f"
 }
 
 
@@ -41,7 +42,8 @@ def parse_fish_id_from_text(message_text: str) -> [str]:
             # this makes it referenceable by device ID
             matched_devices.append(key)
     if len(matched_devices) == 0:
-        return [DEFAULT_DEVICE_ID]
+        all_known_ids = list(name_to_device_id.values())
+        return all_known_ids
     return matched_devices
 
 
