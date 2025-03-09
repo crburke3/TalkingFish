@@ -5,7 +5,7 @@ from datetime import datetime
 
 from .fish_command import FishCommand
 from .audio_driver import AudioDriver
-from .globals import get_device_id
+from .globals import get_device_id, FUNCTION_PATH
 from .fish_information import FishInformation
 
 
@@ -30,7 +30,7 @@ class FishAPI:
 
     def get_next_item_in_queue(self):
         id = get_device_id()
-        url = f"http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/get_from_queue?device_id={id}"
+        url = f"{FUNCTION_PATH}/get_from_queue?device_id={id}"
         return requests.get(url)
 
     def download_song_for_object(self, cmd: FishCommand):
@@ -44,13 +44,13 @@ class FishAPI:
         cmd.local_song_url = local_url
 
     def post_fish_formation(self, fish_data: FishInformation):
-        url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/add_fish_data"
+        url = f"{FUNCTION_PATH}/add_fish_data"
         requests.post(url, fish_data.dict())
         print("successfully posted fish boot info")
 
     def post_fish_command(self, fish_text: str):
         print(f"posting fish command: {fish_text}")
-        url = "http://us-central1-talkingfish-332301.cloudfunctions.net/addToQueue/post_to_queue"
+        url = f"{FUNCTION_PATH}/post_to_queue"
         fish_speech = [{"message": {"Body": fish_text}}]
         resp = requests.post(url, json=fish_speech)
         print(resp.text)

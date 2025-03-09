@@ -4,7 +4,7 @@ AUDIO_START_OFFSET = 0.0
 AUDIO_SHORTENING = 0.0
 
 base_path = os.path.dirname(os.path.realpath(__file__))
-
+FUNCTION_PATH = "https://us-central1-talkingfish-453120.cloudfunctions.net/hello_world"
 
 def _parse_movement_and_duration(command):
     if len(command) == 2:
