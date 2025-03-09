@@ -4,6 +4,6 @@ from datetime import datetime
 
 class FishInformation(BaseModel):
     device_id: str = "DEFAULT_DEVICE_ID"
-    language_key: str = "en"
+    language_key: str = "sv"
     last_updated: datetime = datetime.utcnow()
     state: str = "booting"
