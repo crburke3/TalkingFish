@@ -16,6 +16,7 @@ class FishFirestore:
         print("initalizing firestore client...")
         if server_globals.is_running_in_cloud():
             print("assuming is running in cloud and has default creds")
+            firebase_admin.initialize_app()
         else:
             cred = credentials.Certificate(server_globals.gcs_cred_path)
             firebase_admin.initialize_app(cred)
