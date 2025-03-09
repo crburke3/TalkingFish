@@ -21,8 +21,10 @@ class WavCreator:
         print("Converting " + filename + ".mp3 to " + filename + ".wav")
         sound = AudioSegment.from_mp3("/tmp/" + filename + ".mp3")
         sound.export("/tmp/" + filename + ".wav", format="wav")
-
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = server_globals.gcs_cred_path
+        if server_globals.is_running_in_cloud():
+            print("is running in google cloud")
+        else:
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = server_globals.gcs_cred_path
         storage_client = storage.Client()
         bucket_name = "fish-1-audio-files"
         bucket = storage_client.bucket(bucket_name)

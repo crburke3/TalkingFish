@@ -80,3 +80,6 @@ def parse_basic_arguments(request):
         print(f"parse_basic_arguments error: {str(e)}")
         return None
 
+def is_running_in_cloud():
+    """Returns True if running inside Google Cloud Functions."""
+    return os.getenv("K_SERVICE") is not None
