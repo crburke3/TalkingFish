@@ -4,7 +4,7 @@ steps:
       - gcloud
       - functions
       - deploy
-      - addToQueue  # this is the name of the Google Cloud Function
+      - hello_world  # this is the name of the Google Cloud Function
       - --region=us-central1
       - --runtime=python38  # specify version of Python to use
       - --source=./backend  # this is the source directory for the code to be deployed
