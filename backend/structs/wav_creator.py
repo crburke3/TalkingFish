@@ -26,7 +26,7 @@ class WavCreator:
         else:
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = server_globals.gcs_cred_path
         storage_client = storage.Client()
-        bucket_name = "fish-1-audio-files"
+        bucket_name = "fish-audio-files"
         bucket = storage_client.bucket(bucket_name)
         blob = bucket.blob(filename + ".wav")
         blob.upload_from_filename("/tmp/" + filename + ".wav")
